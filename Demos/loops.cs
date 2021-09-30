@@ -5,22 +5,6 @@ namespace demos
     class Loops
     {
         #region
-        public void App(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
         public void App1(string demoName)
         {
             try
@@ -80,7 +64,22 @@ namespace demos
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                int days;
+                double sales;
+                double totalSales;
+
+                Console.Write("Enter the number of days: ");
+                days = int.Parse(Console.ReadLine());
+
+                totalSales = 0;
+                for (int i = 1; i <= days; i++)
+                {
+                    Console.Write($"Enter sales as a number for day #{i}: $ ");
+                    sales = double.Parse(Console.ReadLine());
+                    totalSales += sales;
+                }
+
+                Console.WriteLine($"Total Sales: {totalSales:C}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -96,7 +95,42 @@ namespace demos
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                int numStudents;
+                double curMark;
+                double minMark = 101;
+                double maxMark = -1;
+                double sumOfMarks = 0;
+                double avgMark;
+
+                // Grab our input
+                Console.Write("Enter number of students: ");
+                numStudents = int.Parse(Console.ReadLine());
+
+                // Loop over each of our students
+                for (int i = 1; i <= numStudents; i++)
+                {
+                    Console.Write($"Enter mark for student # {i}: ");
+                    curMark = double.Parse(Console.ReadLine());
+
+                    // Is this the highest or lowest mark we've seen?
+                    if (curMark < minMark)
+                    {
+                        minMark = curMark;
+                    }
+                    if (curMark > maxMark)
+                    {
+                        maxMark = curMark;
+                    }
+
+                    // Add it to our totals
+                    sumOfMarks += curMark;
+                }
+
+                // Calculate the average
+                avgMark = (double)sumOfMarks / numStudents;
+
+                // Print our results
+                Console.WriteLine($"\nAverage Mark: {avgMark}, Highest Mark: {maxMark}, Lowest Mark: {minMark}");                
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -128,7 +162,17 @@ namespace demos
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                int i = 0;
+                while (i < 4)
+                {
+                    Console.WriteLine($"WHILE {i}");
+                    i++;
+                }
+
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.WriteLine($"FOR {j}");
+                }
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
