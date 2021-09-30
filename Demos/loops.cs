@@ -121,14 +121,11 @@ namespace demos
                     {
                         maxMark = curMark;
                     }
-
                     // Add it to our totals
                     sumOfMarks += curMark;
                 }
-
                 // Calculate the average
                 avgMark = (double)sumOfMarks / numStudents;
-
                 // Print our results
                 Console.WriteLine($"\nAverage Mark: {avgMark}, Highest Mark: {maxMark}, Lowest Mark: {minMark}");                
                 Console.WriteLine($"{demoName} ended");
@@ -168,7 +165,6 @@ namespace demos
                     Console.WriteLine($"WHILE {i}");
                     i++;
                 }
-
                 for (int j = 0; j < 4; j++)
                 {
                     Console.WriteLine($"FOR {j}");
@@ -309,16 +305,13 @@ namespace demos
                 Console.WriteLine($"{demoName} started");
                 // Prompt the user to enter a series of integer numbers, 0 to stop
                 // Display sum of all numbers entered.
-
                 int num;
                 int sum = 0;
-
                 do {
                     Console.Write("Enter an integer number (0 to exit): ");
                     num = int.Parse(Console.ReadLine());
                     sum += num;
                 } while (num != 0);
-
                 Console.WriteLine($"\nSum of Numbers {sum}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
@@ -341,7 +334,6 @@ namespace demos
                 double sumOfMarks = 0;
                 double avgMark;
                 int numStudents = 1;
-
                 do{
                     Console.Write($"Enter mark for student #{numStudents} or 999 to quit the program: ");
                     curMark = double.Parse(Console.ReadLine());
@@ -384,7 +376,6 @@ namespace demos
                 String stringEntered = "1";
                 double numEntered;
                 double total = 0;
-
                 Console.WriteLine($"*** Welcome to the Adding Machine. ***");
                 do {
                     Console.WriteLine($"Enter = when done.");
