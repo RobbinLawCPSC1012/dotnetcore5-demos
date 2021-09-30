@@ -6,6 +6,12 @@ namespace demos
     {
         static void Main(string[] args)
         {
+            var program = new Program();
+            program.Loops();
+             
+        }
+        public void Loops()
+        {
             var loops = new Loops();
             loops.App1("For Loop Simple Demo");
             loops.App2("For Loop Class Average Demo");
@@ -19,9 +25,6 @@ namespace demos
             loops.App10("Do While Simple Demo");
             loops.App11("Do While Loop Class Average with High/Low Play Many Times");
             loops.App12("Do While Loop Add Calculator Play Many Times");
-
-
-            
         }
         
         
