@@ -7,7 +7,8 @@ namespace demos
         static void Main(string[] args)
         {
             var program = new Program();
-            program.Loops();
+            //program.Loops();
+            program.Files();
              
         }
         public void Loops()
@@ -25,6 +26,11 @@ namespace demos
             loops.App10("Do While Simple Demo");
             loops.App11("Do While Loop Class Average with High/Low Play Many Times");
             loops.App12("Do While Loop Add Calculator Play Many Times");
+        }
+        public void Files()
+        {
+            var files = new Files();
+            files.App1();
         }
         
         
