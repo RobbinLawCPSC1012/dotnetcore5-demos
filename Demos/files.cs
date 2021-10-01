@@ -6,6 +6,7 @@ namespace demos
 {
     public class Files
     {
+        #region
         public void App1()
         {
             Random randNum = new Random();
@@ -19,7 +20,8 @@ namespace demos
             Console.WriteLine($"SystemDirectory: {Environment.SystemDirectory}\n");
             Console.WriteLine($"TempDirectory: {Environment.GetEnvironmentVariable("TEMP")}\n");
 
-            //string fname = Path.Combine(Directory.GetCurrentDirectory(), "test.txt");
+            string fname = Path.Combine(Directory.GetCurrentDirectory(), "test.txt");
+            Console.WriteLine($"fname: {fname}");
             if(Directory.Exists(myDirPath))
             {
                 Console.WriteLine($"{myDirPath} is a valid directory\n");
@@ -86,6 +88,72 @@ namespace demos
                 Console.WriteLine($"The filename {path} does not exist.");
             }
         }
+        #endregion
+        #region
+        public void App2(string demoName)
+        {
+            
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+        #endregion
+        #region
+        public void App3(string demoName)
+        {
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+        #endregion
+        #region
+        public void App4(string demoName)
+        {
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+        #endregion
+        #region
+        public void App5(string demoName)
+        {
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+        #endregion
     }
 }
     

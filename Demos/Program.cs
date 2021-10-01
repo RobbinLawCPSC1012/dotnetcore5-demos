@@ -31,6 +31,10 @@ namespace demos
         {
             var files = new Files();
             files.App1();
+            files.App2("");
+            files.App3("");
+            files.App4("");
+            files.App5("5");
         }
         
         
