@@ -8,7 +8,7 @@ namespace demos
         {
             var program = new Program();
             program.Sequence();
-            program.Decision();
+            //program.Decision();
             //program.Loops();
             //program.Files();
              
@@ -70,9 +70,9 @@ namespace demos
             apps.App4("");
             apps.App5("5");
         }
-        // public void Decision()
+        // public void X()
         // {
-        //     var apps = new Decision();
+        //     var apps = new X();
         //     apps.App1("1");
         //     apps.App2("2");
         //     apps.App3("3");
