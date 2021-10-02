@@ -281,7 +281,6 @@ namespace MethodsExceptions
         {
             bool invalidInput = true;
             int num = 0;
-
             while (invalidInput)
             {
                 Console.WriteLine($"{prompt} between {low} and {high}: ");
@@ -293,12 +292,10 @@ namespace MethodsExceptions
             }
             return num;
         }
-
         private char GetCharacter(string msg)
         {
             bool validInput = false;
             char c = 'c';
-
             while (!validInput)
             {
                 Console.Write(msg);
@@ -307,7 +304,6 @@ namespace MethodsExceptions
             }
             return c;
         }
-
         private void DrawBox(int rows, char drawChar)
         {
             for (int i = 1; i <= rows; i++)
@@ -316,7 +312,6 @@ namespace MethodsExceptions
                 Console.Write($"\n");
             }
         }
-
         private void DrawRow(int rows, char drawChar)
         {
             for(int i =1; i <= rows; i++)
