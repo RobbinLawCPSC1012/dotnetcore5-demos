@@ -111,9 +111,9 @@ namespace Demos
             var app7 = new MethodsExceptions.App7();
             //app7.App("Methods Overloading Draw Triangles");
             var app8 = new MethodsExceptions.App8();
-            app8.App("Try Catch Simple Demo");
+            //app8.App("Try Catch Simple Demo");
             var app9 = new MethodsExceptions.App9();
-            //app9.App("Try Catch Finally Demo");
+            app9.App("Try Catch Finally Demo");
             var app10 = new MethodsExceptions.App10();
             //app10.App("Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();

@@ -492,12 +492,55 @@ namespace MethodsExceptions
     #region
     public class App9
     {
+        private string MyMethod(string name)
+        {
+            try
+            {
+                if(name == "robbin")
+                    throw new ArgumentNullException($"Bad Name: {name}");
+                if(name == "robbinl")
+                    throw new FormatException($"Bad Name: {name}");
+                if(name == "robbinlaw")
+                    throw new FieldAccessException($"Bad Name: {name}");
+                return $"MyMethod try: Good Name: {name}";
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine($"ArgumentNullException: {ex.Message}");
+                return "ArgumentNullException";
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"FormatException: {ex.Message}");
+                throw;
+                return "FormatException";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                //throw;
+                //return "CatchAllException";
+            }
+            finally
+            {
+                Console.WriteLine("The finally runs exception or not");
+                //can only have one finally per try
+                //cannot have a return in finally
+                //return "finally";
+            }
+            Console.WriteLine("This code will run if the catch does not have a return");
+            Console.WriteLine("This code will also run if the try is successful and does not have a return");
+            return "funny thing";  
+        }
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                Console.Write($"Enter your name: ");
+                string myName = Console.ReadLine();
+                string returnedString = MyMethod(myName);
+                Console.WriteLine($"App try: returned string: {returnedString}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
