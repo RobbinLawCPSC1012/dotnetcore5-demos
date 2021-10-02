@@ -1,201 +1,149 @@
 using System;
 
-namespace demos
+namespace Decision
 {
-    class Decision
+    #region
+    public class App1
     {
-        #region
-        public void App1(string demoName)
+        public void App(string demoName)
         {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App2(string demoName)
-        {
+            Console.WriteLine($"{demoName} started");
             
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
         }
-        #endregion
-        #region
-        public void App3(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App4(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App5(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App6(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App7(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App8(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App9(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App10(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App11(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
-        #region
-        public void App12(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-        #endregion
     }
+    #endregion
+    #region
+    public class App2
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App3
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App4
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App5
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App6
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App7
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App8
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App9
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App10
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App11
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
+    #region
+    public class App12
+    {
+        public void App(string demoName)
+        {
+            Console.WriteLine($"{demoName} started");
+            
+            Console.WriteLine($"{demoName} ended");
+            Console.WriteLine("");
+        }
+    }
+    #endregion
 }
