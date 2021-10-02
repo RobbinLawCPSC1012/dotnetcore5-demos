@@ -393,10 +393,97 @@ namespace MethodsExceptions
     #region
     public class App8
     {
+        private int GetInt1(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                Console.Write(msg);
+                num = int.Parse(Console.ReadLine());
+                if (num > 0)
+                    inValidInput = false;
+                else
+                    Console.WriteLine("GetInt1: Invalid. Must be bigger than zero.");
+            }
+            return num;
+        }
+        private int GetInt2(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                Console.Write(msg);
+                try
+                {
+                    num = int.Parse(Console.ReadLine());
+                    if (num > 0)
+                        inValidInput = false;
+                    else
+                        Console.WriteLine("GetInt2: Invalid. Must be bigger than zero.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"GetInt2 catch: {ex.Message}");
+                    throw;
+                }
+            }
+            return num;
+        }
+        private int GetInt3(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                Console.Write(msg);
+                try
+                {
+                    num = int.Parse(Console.ReadLine());
+                    if (num > 0)
+                        inValidInput = false;
+                    else
+                        throw new Exception("GetInt3: Exception Message. Must be bigger than zero.");
+                    Console.WriteLine($"GetInt3 try: Congrats, you entered {num}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"GetInt3 catch: {ex.Message}");
+                    throw;
+                }
+            }
+            return num;
+        }
+        private int GetInt4(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    num = GetInt3(msg);
+                    inValidInput = false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"GetInt4 catch: {ex.Message}");
+                }
+            }
+            return num;
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int myInt1 = GetInt1($"GetInt1: Enter a + integer value: ");
+            Console.WriteLine($"App try: Congrats, you entered {myInt1}");
+            int myInt2 = GetInt2($"GetInt2: Enter a + integer value: ");
+            Console.WriteLine($"App try: Congrats, you entered {myInt2}");
+            int myInt3 = GetInt3($"GetInt3: Enter a + integer value: ");
+            Console.WriteLine($"App try: Congrats, you entered {myInt3}");
+            int myInt4 = GetInt4($"GetInt4 & 3: Enter a + integer value: ");
+            Console.WriteLine($"App try: Congrats, you entered {myInt4}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -407,10 +494,17 @@ namespace MethodsExceptions
     {
         public void App(string demoName)
         {
-            Console.WriteLine($"{demoName} started");
-            
-            Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
         }
     }
     #endregion
@@ -419,10 +513,17 @@ namespace MethodsExceptions
     {
         public void App(string demoName)
         {
-            Console.WriteLine($"{demoName} started");
-            
-            Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
         }
     }
     #endregion
@@ -431,10 +532,17 @@ namespace MethodsExceptions
     {
         public void App(string demoName)
         {
-            Console.WriteLine($"{demoName} started");
-            
-            Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
         }
     }
     #endregion
@@ -443,10 +551,17 @@ namespace MethodsExceptions
     {
         public void App(string demoName)
         {
-            Console.WriteLine($"{demoName} started");
-            
-            Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
         }
     }
     #endregion
