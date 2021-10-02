@@ -1,5 +1,4 @@
 ﻿using System;
-//using Sequence;
 
 namespace Demos
 {
@@ -13,7 +12,6 @@ namespace Demos
             //program.Loops();
             program.MethodsExceptions();
             //program.Files();
-             
         }
         public void Sequence()
         {
@@ -69,7 +67,6 @@ namespace Demos
             var app12 = new Decision.App12();
             app12.App("12");
         }
-        
         public void Loops()
         {
             var app1 = new Loops.App1();

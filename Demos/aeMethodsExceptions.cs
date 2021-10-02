@@ -119,10 +119,34 @@ namespace MethodsExceptions
     #region
     public class App3
     {
+        private double getNumber(string prompt, double low, double high)
+        {
+            bool invalidInput = true;
+            while (invalidInput)
+            {
+                Console.WriteLine($"{prompt} between {low:n1} and {high:n1}: ");
+                num = double.Parse(Console.ReadLine());
+                if (num >= low && num <= high)
+                    invalidInput = false;
+                else
+                    Console.WriteLine("Error: Invalid Input.");
+            }
+            return num;
+        }
+        private double circleArea(double radius)
+        {
+            return (Math.PI * radius * radius);
+        }
+        private double circleCircumference(double radius)
+        {
+            return (2 * Math.PI * radius);
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            double radius = getNumber("Enter Circle Radius", 2.0, 6.0);
+            Console.WriteLine($"The Circle Area is: {circleArea(radius):n2}");
+            Console.WriteLine($"The Circle Circumference is: {circleCircumference(radius):n2}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -131,10 +155,36 @@ namespace MethodsExceptions
     #region
     public class App4
     {
+        private double compute_slope ( int x1, int y1, int x2, int y2 )
+        {
+           double slope;
+           slope = (y2 - y1)/(x2 - x1);
+           return slope;
+        }
+
+        /* Calculates the Y intercept of the line. */
+        private double compute_intercept ( int x1, int y1, double slope )
+        {
+           double intercept;
+           intercept = y1 - slope * x1;
+           return intercept;
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int x1, x2, y1, y2;
+            double slope, intercept;
+            Console.WriteLine("please enter the X coordinate of the first point: ");
+            x1= int.Parse(Console.ReadLine());
+            Console.WriteLine("please enter the X coordinate of the second point: ");
+            x2= int.Parse(Console.ReadLine());
+            Console.WriteLine("please enter the Y coordinate of the first point: ");
+            y1= int.Parse(Console.ReadLine());
+            Console.WriteLine("please enter the Y coordinate of the second point: ");
+            y2= int.Parse(Console.ReadLine());
+            slope = compute_slope (x1, y1, x2, y2);
+            intercept = compute_intercept(x1, y1, slope);
+            Console.WriteLine($"The slope is {slope}, and the intercept is {intercept}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -143,10 +193,81 @@ namespace MethodsExceptions
     #region
     public class App5
     {
+        static void DisplayMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Math Quiz");
+            Console.WriteLine("**********\n");
+            Console.WriteLine("a) \tAddition Question");
+            Console.WriteLine("s) \tSubtraction Question");
+            Console.WriteLine("m) \tMultiplication Question");
+            Console.WriteLine("d) \tDivision Question");
+            Console.WriteLine("q) \tQuit");
+        }
+        static double Add(double a, double b)
+        {
+            return a + b;
+        }
+        static double Subtract(double a, double b)
+        {
+            return a - b;
+        }
+        static double Multiply(double a, double b)
+        {
+            return a * b;
+        }
+        static double Divide(double a, double b)
+        {
+            return a / b;
+        }
+        static char GetChoice()
+        {
+            Console.Write("Please enter a choice: ");
+            char c = Char.ToLower(Char.Parse(Console.ReadLine()));
+            switch (c)
+            {
+                case 'a':
+                case 's':
+                case 'm':
+                case 'd':
+                case 'q':
+                    return c;
+
+                default:
+                    Console.WriteLine("Invalid Option.");
+                    return GetChoice();
+            }
+        }
+        static double DoThatMath(char c)
+        {
+            double a, b;
+            Console.Write("Enter Number 1: ");
+            a = double.Parse(Console.ReadLine());
+            Console.Write("Enter Number 2: ");
+            b = double.Parse(Console.ReadLine());
+            if (c == 'a') return Add(a, b);
+            if (c == 's') return Subtract(a, b);
+            if (c == 'm') return Multiply(a, b);
+            else return Divide(a, b);
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            bool running = true;
+            while (running)
+            {
+                DisplayMenu();
+                char c = GetChoice();
+                if (c == 'q')
+                    running = false;
+                else
+                {
+                    Console.WriteLine("Result is: " + DoThatMath(c));
+                    Console.WriteLine("Press Enter to Continue");
+                    Console.ReadLine();
+                }
+            }
+            Console.WriteLine("Goodbye!");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -155,10 +276,59 @@ namespace MethodsExceptions
     #region
     public class App6
     {
+        private int GetNumber(string prompt, int low, int high)
+        {
+            bool invalidInput = true;
+            int num = 0;
+
+            while (invalidInput)
+            {
+                Console.WriteLine($"{prompt} between {low} and {high}: ");
+                num = int.Parse(Console.ReadLine());
+                if (num >= low && num <= high)
+                    invalidInput = false;
+                else
+                    Console.WriteLine("Error: Invalid Input.");
+            }
+            return num;
+        }
+
+        private char GetCharacter(string msg)
+        {
+            bool validInput = false;
+            char c = 'c';
+
+            while (!validInput)
+            {
+                Console.Write(msg);
+                c = char.Parse(Console.ReadLine());
+                validInput = true;
+            }
+            return c;
+        }
+
+        private void DrawBox(int rows, char drawChar)
+        {
+            for (int i = 1; i <= rows; i++)
+            {
+                DrawRow(rows, drawChar);
+                Console.Write($"\n");
+            }
+        }
+
+        private void DrawRow(int rows, char drawChar)
+        {
+            for(int i =1; i <= rows; i++)
+            {
+                Console.Write($"{drawChar}");
+            }
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int num = GetNumber("Enter the number of rows", 1, 10);
+            char c = GetCharacter("Enter a character to print: ");
+            DrawBox(num, c);
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -167,10 +337,58 @@ namespace MethodsExceptions
     #region
     public class App7
     {
+        private int GetNumber(string prompt, int low, int high)
+        {
+            bool invalidInput = true;
+            int num = 0;
+            while (invalidInput)
+            {
+                Console.WriteLine($"{prompt} between {low} and {high}: ");
+                num = int.Parse(Console.ReadLine());
+                if (num >= low && num <= high)
+                    invalidInput = false;
+                else
+                    Console.WriteLine("Error: Invalid Input.");
+            }
+            return num;
+        }
+        private char GetCharacter(string msg)
+        {
+            bool validInput = false;
+            char c = 'c';
+            while (!validInput)
+            {
+                Console.Write(msg);
+                c = char.Parse(Console.ReadLine());
+                validInput = true;
+            }
+            return c;
+        }
+        private void DrawTriangle(int rows)
+        {
+            char c = '*';
+            DrawTriangle(rows, c);
+        }
+        private void DrawTriangle(int rows, char drawChar)
+        {
+            for (int i = 1; i <= rows; i++)
+                DrawRow(i, drawChar);
+        }
+        private void DrawRow(int len, char c)
+        {
+            for (int i = 0; i < len; i++)
+                Console.Write(c);
+            Console.Write("\n");
+        }
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int num = GetNumber("Enter the number of rows", 1, 10);
+            char c = GetCharacter("Enter a character to print: ");
+            Console.WriteLine("\nDefault");
+            DrawTriangle(num);
+            Console.WriteLine("\nCustom");
+            DrawTriangle(num, c);
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
