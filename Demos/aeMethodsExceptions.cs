@@ -121,6 +121,7 @@ namespace MethodsExceptions
     {
         private double getNumber(string prompt, double low, double high)
         {
+            double num = 0;
             bool invalidInput = true;
             while (invalidInput)
             {
@@ -195,7 +196,7 @@ namespace MethodsExceptions
     {
         static void DisplayMenu()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Math Quiz");
             Console.WriteLine("**********\n");
             Console.WriteLine("a) \tAddition Question");
