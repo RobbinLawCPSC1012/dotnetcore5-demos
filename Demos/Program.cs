@@ -100,29 +100,29 @@ namespace Demos
         public void MethodsExceptions()
         {
             var app1 = new MethodsExceptions.App1();
-            app1.App("For Loop Simple Demo");
+            app1.App("Methods Simple Demo");
             var app2 = new MethodsExceptions.App2();
-            app2.App("For Loop Class Average Demo");
+            app2.App("Methods input Validation Demo");
             var app3 = new MethodsExceptions.App3();
-            app3.App("For Loop Total Sales Demo");
+            app3.App("Methods Circle Area and Circumference");
             var app4 = new MethodsExceptions.App4();
-            app4.App("For Loop Class Average with High/Low Play Only Once");
+            app4.App("Methods Equation of a Line");
             var app5 = new MethodsExceptions.App5();
-            app5.App("For Loop Year End Balance");
+            app5.App("Methods Math Calculator");
             var app6 = new MethodsExceptions.App6();
-            app6.App("For & While Loop Comparison");
+            app6.App("Methods Boxed In");
             var app7 = new MethodsExceptions.App7();
-            app7.App("While Loop Temperature");
+            app7.App("Methods Overloading Draw Triangles");
             var app8 = new MethodsExceptions.App8();
-            app8.App("While Loop Soccer Team");
+            app8.App("Try Catch Simple Demo");
             var app9 = new MethodsExceptions.App9();
-            app9.App("While Loop Guess the Number Only Play Once");
+            app9.App("Try Catch Finally Demo");
             var app10 = new MethodsExceptions.App10();
-            app10.App("Do While Simple Demo");
+            app10.App("Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();
-            app11.App("Do While Loop Class Average with High/Low Play Many Times");
+            app11.App("Try Catch Boxed In");
             var app12 = new MethodsExceptions.App12();
-            app12.App("Do While Loop Add Calculator Play Many Times");
+            app12.App("Try Catch Draw Triangles");
         }
         public void Files()
         {
