@@ -195,9 +195,216 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
+
+            // Console.WriteLine("  Room");
+            // double roomWidth = getSafeDouble("     Width: ");
+            // double roomLength = getSafeDouble("     Length: ");
+
+            // Console.WriteLine("  Window");
+            // double windowWidth = getSafeDouble("     Width: ");
+            // double windowHeight = getSafeDouble("     Height: ");
+
+            // Console.WriteLine("  Door");
+            // double doorWidth = getSafeDouble("     Width: ");
+            // double doorHeight = getSafeDouble("     Height: ");
+
+            // Console.WriteLine("  Closet");
+            // double closetWidth = getSafeDouble("     Width: ");
+            // double closetHeight = getSafeDouble("     Height: ");
+
+            // Console.WriteLine("  Paint");
+            // Console.WriteLine("     1. Basic 29.99 / gallon");
+            // Console.WriteLine("     2. Premium 39.99 / gallon");
+            // Console.WriteLine("     3. Deluxe 49.99 / gallon");
+            // int paintGrade = getSafeInt("     Choose your paint grade: ");
+
+            // Console.WriteLine("  Flooring");
+            // Console.WriteLine("     1. Carpet / 2.75 ^ft.");
+            // Console.WriteLine("     2. Tile  / 3.50 ^ft.");
+            // Console.WriteLine("     3. Hardowood  / 4.85 ^ft.");
+            // int flooringType = getSafeInt("     Choose your flooring: ");
+
+            // double casingPrice = getSafeDouble("\n  Casing Price: ");
+            // double baseBoardPrice = getSafeDouble("\n  Baseboard Price: ");
+
+            double roomWidth = 10;
+            double roomLength = 12;
+            double windowWidth = 4.5;
+            double windowHeight = 3.0;
+            double doorWidth = 2.5;
+            double doorHeight = 7.0;
+            double closetWidth = 5.0;
+            double closetHeight = 7.0;
+            int paintGrade = 3;
+            int flooringType = 2;
+            double casingPrice = 1.29;
+            double baseBoardPrice = 2.59;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate wall area 
+            double wallArea = (roomLength * 2 * 8 + roomWidth * 2 * 8) - (windowWidth * windowHeight + doorHeight * doorWidth + closetHeight * closetWidth);
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate casing
+            double casingLength = windowHeight * 2 + windowWidth * 2 + doorWidth + doorHeight * 2 + closetWidth + closetHeight * 2;
+            casingLength *= 1.1;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate baseboard
+            double baseBoardLength = roomWidth * 2 + roomLength * 2 - doorWidth - closetWidth;
+            baseBoardLength *= 1.1;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate flooring 
+            double floorArea = roomWidth * roomLength;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate baseboard and casing cost
+            double casingCost = Math.Round(casingPrice * casingLength,2,MidpointRounding.ToEven);
+            double baseBoardCost = Math.Round(baseBoardPrice * baseBoardLength,2,MidpointRounding.ToEven);
+
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // set paint price and description
+
+            double paintPrice = 0.0;
+            double dGallons = 0.0;
+            string paintDescription = "none";
+
+            switch (paintGrade)
+            {
+                case 1:
+                    {
+                        dGallons = wallArea / 300 + floorArea / 200;
+                        paintPrice = 29.99;
+                        paintDescription = "Basic paint";
+
+                        break;
+                    }
+                case 2:
+                    {
+                        dGallons = wallArea / 400 + floorArea / 250;
+                        paintPrice = 39.99;
+                        paintDescription = "Premium paint";
+
+
+                        break;
+                    }
+                case 3:
+                    {
+                        dGallons = wallArea / 500 + floorArea / 300;
+                        paintPrice = 49.99;
+                        paintDescription = "Deluxe paint ";
+                        break;
+                    }
+                
+            }
+            int iGallons = (int)Math.Ceiling(dGallons);
+            double paintCost = iGallons * paintPrice;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // set flooring cost and description
+            double flooringPrice = 0.0;
+            string flooringDescription = "none";
+
+            if (flooringType == 1)
+            {
+                flooringPrice = 2.75;
+                flooringDescription = "Carpet";
+            }
+            else if (flooringType == 2)
+            {
+                flooringPrice = 3.50;
+                flooringDescription = "Tile";
+            }
+            else
+            {
+                flooringPrice = 4.85;
+                flooringDescription = "Hardwood";
+            }
+
+            double flooringCost = Math.Round(floorArea * flooringPrice,2,MidpointRounding.ToEven);
+            string sFlooringCost = string.Format("{0:0.00}", flooringCost);        
             
-            Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            // calculate totals
+            double netTotal = paintCost + flooringCost + casingCost + baseBoardCost;
+            double GST = Math.Round(netTotal * .05,2,MidpointRounding.ToEven);
+            double total = netTotal + GST;
+            string desc =
+                $"\n{"Packing Slip",40}" +
+                $"\n{"*******************************************************************",50}" +
+                $"\n{"Wall Area (sqft):",35} {wallArea,-8:n}" +
+                $"\n{"Ceiling Area (sqft):",35} {floorArea,-8:n}" +
+                $"\n{"Required Paint (Gallons):",35} {iGallons,-8:n}{"@",-1} {paintPrice,-8:c}{"=",-1} {paintCost,-8:c}" +
+                $"\n{"Hardwood Required (ft):",35} {floorArea,-8:n}{"@",-1 } {flooringPrice,-8:c}{"=",-1} {sFlooringCost,-8:c}" +
+                $"\n{"Casing Required (ft):",35} {casingLength,-8:n}{"@",-1} {casingPrice,-8:c}{"=",-1} {casingCost,-8:c}" +
+                $"\n{"Baseboard Required (ft):",35} {baseBoardLength,-8:n}{"@",-1} {baseBoardPrice,-8:c}{"=",-1} {baseBoardCost,-8:c}" +
+                $"\n{"Net Total:",35}{"=",20} {netTotal,-8:c}" +
+                $"\n{"GST:",35}{"=",20} {GST,-8:c}" +
+                $"\n{"Total:",35}{"=",20} {total,-8:c}";
+            Console.WriteLine(desc);
+
+
+        // static public int getSafeInt(string prompt)
+        // {
+        //     int dInput = 0;
+        //     bool bValid = false;
+        //     while (!bValid)
+        //     {
+        //         try
+        //         {
+        //             Console.Write(prompt);
+        //             dInput = Convert.ToInt32(Console.ReadLine());
+        //             bValid = true;
+        //         }
+        //         catch (Exception e)
+        //         {
+        //             Console.WriteLine("\nInvalid input... try again.");
+        //         }
+        //     }
+
+        //     return dInput;
+        // }
+
+        // static public double getSafeDouble(string prompt)
+        // {
+        //     double dInput = 0.0;
+        //     bool bValid = false;
+        //     while (!bValid)
+        //     {
+        //         try
+        //         {
+        //             Console.Write(prompt);
+        //             dInput = Convert.ToDouble(Console.ReadLine());
+        //             bValid = true;
+        //         }
+        //         catch (Exception e)
+        //         {
+        //             Console.WriteLine("\nInvalid input... try again.");
+        //         }
+        //     }
+
+        //     return dInput;
+        // }
+
+
+
+
+            // double wallArea = 286.0;
+            // double ceilingArea = 120.0;
+            // double gallonsRequired = 1.0;
+            // double hardwood = 120.0;
+            // double casing = 55.55;
+            // double baseboard = 40.15;
+            // double netTotal = 645.64;
+            // double gst = 32.28;
+            // double total = 677.92;
+
+            
+            // Console.WriteLine($"{demoName} ended");
+            // Console.WriteLine("");
         }
     }
     #endregion
