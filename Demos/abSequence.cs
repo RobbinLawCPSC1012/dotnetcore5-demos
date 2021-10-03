@@ -66,39 +66,42 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
+            Console.WriteLine($"");
             string name = "Lamp";
             int howMany = 34;
             double price = 4.52;
             double height = 1234.1283;
             bool hasLightBulb = true;
+            //String building with multiple Console.WriteLine statements.
             //When a string begins with $ then whenever there is an {} 
-            //inside is a variable contents,justify format:presentation format.
+            //inside is variable or literalstring contents,justify format:presentation format.
             //left justified, decimal whole number, 2 digits
-            Console.WriteLine($"howMany is [{howMany,-15:d2}] lamps");
+            Console.WriteLine($"{"howMany:",8} [{howMany,-10:d2}] lamps");
             //right justified, decimal whole number, 3 digits 
-            Console.WriteLine($"howMany is [{howMany,15:d3}] lamps");
+            Console.WriteLine($"{"howMany:",8} [{howMany,10:d3}] lamps");
             //right justified, numeric 3 decimals  
-            Console.WriteLine($"howMany is [{howMany,15:n3}] lamps");
+            Console.WriteLine($"{"howMany:",8} [{howMany,10:n3}] lamps");
             //left justified, numeric 2 decimals  
-            Console.WriteLine($"height is [{height,-15:n2}] cm");
+            Console.WriteLine($"{"height:",8} [{height,-10:n2}] cm");
             //right justified, numeric 3 decimals  
-            Console.WriteLine($"height is [{height,15:n3}] cm");
+            Console.WriteLine($"{"height:",8} [{height,10:n3}] cm");
             //left justified, currency 2 decimals  
-            Console.WriteLine($"price is [{price,-10:c2}]");
+            Console.WriteLine($"{"price:",8} [{price,-10:c2}]");
             //right justified, currency 3 decimals  
-            Console.WriteLine($"price is [{price,10:c3}]");
+            Console.WriteLine($"{"price:",8} [{price,10:c3}]");
             //right justified, numeric 1 decimals  
-            Console.WriteLine($"price is [{price,10:n1}]");  
-            // string building
+            Console.WriteLine($"{"price:",8} [{price,10:n1}]");  
+            //String building by forming one long string.
             string desc =
-                $"\nName: {name} \nPrice: {price,5:c}" +
-                $"\nHow Many: {howMany,5:d}" +
-                $"\nHeight: {height,5:n} cm " +
-                $"\nHas Light Bulb: {hasLightBulb,5}";
+                $"\n{"Name:",15} {name,-8}" +
+                $"\n{"Price:",15} {price,-8:c}" +
+                $"\n{"How Many:",15} {howMany,-8:d}" +
+                $"\n{"Height:",15} {height,-8:n} cm" +
+                $"\n{"Has Light Bulb:",15} {hasLightBulb,-8}\n";
             Console.WriteLine(desc);
             //https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/string-interpolation
             Console.WriteLine($"{demoName} ended");
-            Console.WriteLine("");
+            Console.WriteLine($"");
         }
     }
     #endregion
