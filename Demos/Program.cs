@@ -7,10 +7,10 @@ namespace Demos
         static void Main(string[] args)
         {
             var program = new Program();
-            //program.Sequence();
+            program.Sequence();
             //program.Decision();
             //program.Loops();
-            program.MethodsExceptions();
+            //program.MethodsExceptions();
             //program.Files();
         }
         public void Sequence()
@@ -22,7 +22,7 @@ namespace Demos
             var app3 = new Sequence.App3();
             app3.App("3");
             var app4 = new Sequence.App4();
-            app4.App("4");
+            app4.App("4-String Building with String Interpolation Formatting");
             var app5 = new Sequence.App5();
             app5.App("5");
             var app6 = new Sequence.App6();
