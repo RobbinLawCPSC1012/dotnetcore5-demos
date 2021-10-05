@@ -111,7 +111,25 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int hamburgerNumber = 2;
+            decimal hamburgerPrice = 8.56M;
+            decimal hamburgerCost = hamburgerNumber * hamburgerPrice;
+            int beerNumber = 3;
+            decimal beerPrice = 5.20M;
+            decimal beerCost = beerNumber * beerPrice;
+            decimal netTotal = hamburgerCost + beerCost;
+            decimal GST = netTotal * 0.05M;
+            decimal total = netTotal + GST;
+            string desc =
+                $"\n{"Packing Slip",30}" +
+                $"\n{"************************************************",25}" +
+                $"\n{"Hamburgers:",15} {hamburgerNumber,-8:d}{"@",-1} {hamburgerPrice,-8:c}{"=",-1} {hamburgerCost,-8:c}" +
+                $"\n{"Beers:",15} {beerNumber,-8:d}{"@",-1 } {beerPrice,-8:c}{"=",-1} {beerCost,-8:c}" +
+                $"\n{"Net Total:",15}{"=",20} {netTotal,-8:c}" +
+                $"\n{"GST:",15}{"=",20} {GST,-8:c}" +
+                $"\n{"Total:",15}{"=",20} {total,-8:c}" +
+                $"\n";
+            Console.WriteLine(desc);
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }

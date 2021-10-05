@@ -513,7 +513,7 @@ namespace MethodsExceptions
             {
                 Console.WriteLine($"FormatException: {ex.Message}");
                 throw;
-                return "FormatException";
+                //return "FormatException";
             }
             catch (Exception ex)
             {

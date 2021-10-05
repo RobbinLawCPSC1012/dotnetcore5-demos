@@ -22,23 +22,23 @@ namespace Demos
             var app3 = new Sequence.App3();
             app3.App("3");
             var app4 = new Sequence.App4();
-            app4.App("4-String Building with String Interpolation Formatting");
+            app4.App("4 - String Building with String Interpolation Formatting");
             var app5 = new Sequence.App5();
-            app5.App("5");
+            app5.App("5 - More Complicated String Building");
             var app6 = new Sequence.App6();
-            app6.App("6");
+            //app6.App("6");
             var app7 = new Sequence.App7();
-            app7.App("7");
+            //app7.App("7");
             var app8 = new Sequence.App8();
-            app8.App("8");
+            //app8.App("8");
             var app9 = new Sequence.App9();
-            app9.App("9");
+            //app9.App("9");
             var app10 = new Sequence.App10();
-            app10.App("10");
+            //app10.App("10");
             var app11 = new Sequence.App11();
-            app11.App("11");
+            //app11.App("11");
             var app12 = new Sequence.App12();
-            app12.App("12");
+            //app12.App("12");
         }
         public void Decision()
         {
