@@ -8,7 +8,8 @@ namespace Loops
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            for (int i = 0; i < 10; i++)
+            //i++ is the same as i = i + 1
+            for (int i = 1; i < 4; i++)
                 {
                     Console.WriteLine("I will not sleep in class.");
                 }

@@ -7,9 +7,9 @@ namespace Demos
         static void Main(string[] args)
         {
             var program = new Program();
-            program.Sequence();
+            //program.Sequence();
             //program.Decision();
-            //program.Loops();
+            program.Loops();
             //program.MethodsExceptions();
             //program.Files();
         }

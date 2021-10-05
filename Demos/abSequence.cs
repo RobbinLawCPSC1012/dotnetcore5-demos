@@ -1,3 +1,5 @@
+//https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/string-interpolation
+
 using System;
 
 namespace Sequence
@@ -76,9 +78,9 @@ namespace Sequence
             //When a string begins with $ then whenever there is an {} 
             //inside is variable or literalstring contents,justify format:presentation format.
             //left justified, decimal whole number, 2 digits
-            Console.WriteLine($"{"howMany:",8} [{howMany,-10:d2}] lamps");
+            Console.WriteLine($"{"howMany:",8} [{howMany,-10:d3}] lamps");
             //right justified, decimal whole number, 3 digits 
-            Console.WriteLine($"{"howMany:",8} [{howMany,10:d3}] lamps");
+            Console.WriteLine($"{"howMany:",8} [{howMany,10:d4}] lamps");
             //right justified, numeric 3 decimals  
             Console.WriteLine($"{"howMany:",8} [{howMany,10:n3}] lamps");
             //left justified, numeric 2 decimals  
@@ -91,7 +93,7 @@ namespace Sequence
             Console.WriteLine($"{"price:",8} [{price,10:c3}]");
             //right justified, numeric 1 decimals  
             Console.WriteLine($"{"price:",8} [{price,10:n1}]");  
-            //String building by forming one long string.
+            //String building by forming one long string using concatenation.
             string desc =
                 $"\n{"Name:",15} {name,-8}" +
                 $"\n{"Price:",15} {price,-8:c}" +
@@ -99,7 +101,6 @@ namespace Sequence
                 $"\n{"Height:",15} {height,-8:n} cm" +
                 $"\n{"Has Light Bulb:",15} {hasLightBulb,-8}\n";
             Console.WriteLine(desc);
-            //https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/string-interpolation
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine($"");
         }
