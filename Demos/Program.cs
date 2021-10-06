@@ -26,19 +26,19 @@ namespace Demos
             var app5 = new Sequence.App5();
             app5.App("5 - More Complicated String Building");
             var app6 = new Sequence.App6();
-            //app6.App("6");
+            app6.App("6 - Math");
             var app7 = new Sequence.App7();
-            //app7.App("7");
+            app7.App("7 - ReadLine and Parse");
             var app8 = new Sequence.App8();
-            //app8.App("8");
+            app8.App("8 - Circle Circumference");
             var app9 = new Sequence.App9();
-            //app9.App("9");
+            app9.App("9 - Average Velocity");
             var app10 = new Sequence.App10();
-            //app10.App("10");
+            app10.App("10 - Simple Future Value");
             var app11 = new Sequence.App11();
-            //app11.App("11");
+            app11.App("11 - Calculating GST");
             var app12 = new Sequence.App12();
-            //app12.App("12");
+            app12.App("12");
         }
         public void Decision()
         {

@@ -142,7 +142,42 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            int myInt1 = 8;
+            int myInt2 = 5;
+            double myDouble1 = 8.0;
+            double myDouble2 = 5.0;
+            double myDouble3 = 6.0;
+            int myIntAnswer;
+            double myDoubleAnswer;
+
+            myIntAnswer = myInt1 / myInt2; //only gives the whole part of division
+            Console.WriteLine($"The answer is: {myIntAnswer}");
+            myIntAnswer = myInt2 / myInt1; //only gives the whole part of division
+            Console.WriteLine($"The answer is: {myIntAnswer}");
+            myIntAnswer = myInt1 % myInt2; //gives the remainder of division
+            Console.WriteLine($"The remainder is: {myIntAnswer}");
+
+            myIntAnswer = myInt1 / (int)myDouble2; //only gives the whole part of division as the double is cast to an int
+            Console.WriteLine($"The answer is: {myIntAnswer}");
+            myIntAnswer = (int)myDouble2 / myInt1; //only gives the whole part of division as the double is cast to an int
+            Console.WriteLine($"The answer is: {myIntAnswer}");
+            myIntAnswer = (int)myDouble1 % myInt2; //gives the remainder of division as the double is cast to an int
+            Console.WriteLine($"The remainder is: {myIntAnswer}");
+
+            myDoubleAnswer = myDouble1 / myDouble2; //only gives the whole part of division as the double is cast to an int
+            Console.WriteLine($"The answer is: {myDoubleAnswer}");
+            myDoubleAnswer = myDouble2 / myDouble1; //only gives the whole part of division as the double is cast to an int
+            Console.WriteLine($"The answer is: {myDoubleAnswer}");
+
+            myDoubleAnswer = myDouble1 + myDouble2 * myDouble3 / myDouble1;  
+            //multiplication and Division precede Add and Substract
+            //when at the same level left to right so here Mult first, then Divide, then Add
+            Console.WriteLine($"The answer is:  {myDoubleAnswer:n3}");
+
+            myDoubleAnswer = (myDouble1 + myDouble2) * myDouble3 / myDouble1;
+            //multiplication and Division precede Add and Substract
+            //when at the same level left to right so here Mult first, then Divide, then Add
+            Console.WriteLine($"The answer is:  {myDoubleAnswer:n3}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -154,7 +189,21 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
+            string name;
+            int age;
+            double annualPay;
             
+            Console.WriteLine("Enter your name: ");
+            name = Console.ReadLine();
+
+            Console.WriteLine("Enter your age:");
+            age = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter your annual salary:");
+            annualPay = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"My name is {name}, my age is {age} " +
+                              $"and I hope to earn {annualPay:c} per year.");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -166,7 +215,13 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            double myRadius;
+            double myPi = Math.PI;
+            double myCircumference;
+            Console.Write("Enter the Radius as a double: ");
+            myRadius = double.Parse(Console.ReadLine());
+            myCircumference = 2.0 * myPi * myRadius;
+            Console.WriteLine($"The Radius was {myRadius:n} and its Circumference is {myCircumference:n}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -178,7 +233,15 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            double x1, x2, t1, t2, avgVel;
+            Console.WriteLine("Enter points x1 and x2: ");
+            x1 = double.Parse(Console.ReadLine());
+            x2 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter times t1 and t2: ");
+            t1 = double.Parse(Console.ReadLine());
+            t2 = double.Parse(Console.ReadLine());
+            avgVel = (x2 - x1) / (t2 - t1);
+            Console.WriteLine($"The average velocity is: {avgVel}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -190,7 +253,15 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            Console.WriteLine("Enter Investment Amount:");
+            double investAmt = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter annual interest rate in percentage:");
+            double interestRate = double.Parse(Console.ReadLine());
+            double monthlyInterest = interestRate / 100 / 12;
+            Console.WriteLine("Enter Number of years:");
+            int numYears = int.Parse(Console.ReadLine());
+            double futureVal = investAmt * Math.Pow(1 + monthlyInterest, numYears * 12);
+            Console.WriteLine($"Future Value is {futureVal:C}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -202,7 +273,33 @@ namespace Sequence
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
-            
+            // Declare variables that are Constants
+            const double provTaxRate = 0.06;
+            const double fedTaxRate = 0.05;
+            // Inputs
+            double itemPrice;
+            int numItems;
+            // Results
+            double beforeTax;
+            double totalProvTax;
+            double totalFedTax;
+            double totalTax;
+            double totalSale;
+            Console.WriteLine("Enter the item price as a double: ");
+            itemPrice = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the Number of Items as an integer: ");
+            numItems = int.Parse(Console.ReadLine());
+            beforeTax = itemPrice * numItems;
+            Console.WriteLine($"Purchase Total (before Tax): {beforeTax:C}");
+            // Calculate Tax
+            totalProvTax = beforeTax * provTaxRate;
+            Console.WriteLine($"Total Provincial Tax: {totalProvTax:C}");
+            totalFedTax = beforeTax * fedTaxRate;
+            Console.WriteLine($"Total Federal Tax: {totalFedTax:C}");
+            totalTax = totalProvTax + totalFedTax;
+            Console.WriteLine($"Total Tax Amount: {totalTax:C}");
+            totalSale = beforeTax + totalTax;
+            Console.WriteLine($"Total Sale price: {totalSale:C}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
