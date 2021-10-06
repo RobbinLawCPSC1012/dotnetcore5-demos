@@ -7,8 +7,8 @@ namespace Demos
         static void Main(string[] args)
         {
             var program = new Program();
-            program.Sequence();
-            //program.Decision();
+            //program.Sequence();
+            program.Decision();
             //program.Loops();
             //program.MethodsExceptions();
             //program.Files();
@@ -43,13 +43,13 @@ namespace Demos
         public void Decision()
         {
             var app1 = new Decision.App1();
-            app1.App("1");
+            app1.App("1 - If, If Else, and If Else If Demo");
             var app2 = new Decision.App2();
-            app2.App("2");
+            app2.App("2 - If Else: Polution Level");
             var app3 = new Decision.App3();
-            app3.App("3");
+            app3.App("3 - Boolean Operands");
             var app4 = new Decision.App4();
-            app4.App("4");
+            app4.App("4 - If Else with Boolean: Pass or Fail");
             var app5 = new Decision.App5();
             app5.App("5");
             var app6 = new Decision.App6();
