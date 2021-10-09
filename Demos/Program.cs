@@ -8,8 +8,8 @@ namespace Demos
         {
             var program = new Program();
             //program.Sequence();
-            program.Decision();
-            //program.Loops();
+            //program.Decision();
+            program.Loops();
             //program.MethodsExceptions();
             //program.Files();
         }

@@ -10,9 +10,7 @@ namespace Loops
             Console.WriteLine($"{demoName} started");
             //i++ is the same as i = i + 1
             for (int i = 1; i < 4; i++)
-                {
                     Console.WriteLine("I will not sleep in class.");
-                }
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
