@@ -34,6 +34,7 @@ namespace Loops
             {
                 Console.Write($"Enter mark for student #{i}: ");
                 curMark = double.Parse(Console.ReadLine());
+                //sumOfMarks = sumOfMarks + curMark;
                 sumOfMarks += curMark;
             }
             // Calculate average mark
