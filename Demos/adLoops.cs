@@ -9,7 +9,7 @@ namespace Loops
         {
             Console.WriteLine($"{demoName} started");
             //i++ is the same as i = i + 1
-            for (int i = 1; i < 4; i++)
+            for (int i = 0; i < 4; i++)
                     Console.WriteLine("I will not sleep in class.");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
@@ -189,9 +189,9 @@ namespace Loops
                 Console.Write("Enter Number of available players: ");
                 players = int.Parse(Console.ReadLine());
             }
-            // Calculate the number of teams
+            // Calculate the number of teams using integer math.
             numTeams = players / teamSize;
-            // Calculate the number of left over players
+            // Calculate the number of left over players using the modulus operator.
             leftOver = players % teamSize;
             // display results (teams, left over)
             Console.WriteLine($"\nNumber of Teams: {numTeams} \tNumber of Left Over Players: {leftOver}");

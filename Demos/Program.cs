@@ -9,11 +9,11 @@ namespace Demos
             var program = new Program();
             //program.Sequence();
             //program.Decision();
-            //program.Loops();
+            program.Loops();
             //program.MethodsExceptions();
-            program.Arrays();
-            program.Objects();
-            program.Files();
+            //program.Arrays();
+            //program.Objects();
+            //program.Files();
         }
         public void Sequence()
         {
@@ -72,29 +72,29 @@ namespace Demos
         public void Loops()
         {
             var app1 = new Loops.App1();
-            app1.App("1 - For Loop Simple Demo");
+            //app1.App("1 - For Loop Simple Demo");
             var app2 = new Loops.App2();
-            app2.App("2 - For Loop: Class Average Demo");
+            //app2.App("2 - For Loop: Class Average Demo");
             var app3 = new Loops.App3();
-            app3.App("3 - For Loop: Total Sales Demo");
+            //app3.App("3 - For Loop: Total Sales Demo");
             var app4 = new Loops.App4();
-            app4.App("4 - For Loop: Class Average with High/Low Play Only Once");
+            //app4.App("4 - For Loop: Class Average with High/Low Play Only Once");
             var app5 = new Loops.App5();
-            app5.App("5 - For Loop: Year End Balance");
+            //app5.App("5 - For Loop: Year End Balance");
             var app6 = new Loops.App6();
-            app6.App("6 - For & While Loop Comparison");
+            //app6.App("6 - For & While Loop Comparison");
             var app7 = new Loops.App7();
-            app7.App("7 - While Loop: Temperature");
+            //app7.App("7 - While Loop: Temperature");
             var app8 = new Loops.App8();
-            app8.App("8 - While Loop: Soccer Team");
+            //app8.App("8 - While Loop: Soccer Team");
             var app9 = new Loops.App9();
             app9.App("9 - While Loop: Guess the Number Only Play Once");
             var app10 = new Loops.App10();
-            app10.App("10 - Do While Simple Demo");
+            //app10.App("10 - Do While Simple Demo");
             var app11 = new Loops.App11();
-            app11.App("11 - Do While Loop: Class Average with High/Low Play Many Times");
+            //app11.App("11 - Do While Loop: Class Average with High/Low Play Many Times");
             var app12 = new Loops.App12();
-            app12.App("12 - Do While Loop: Add Calculator Play Many Times");
+            //app12.App("12 - Do While Loop: Add Calculator Play Many Times");
         }
         public void MethodsExceptions()
         {
