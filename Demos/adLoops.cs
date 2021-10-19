@@ -191,7 +191,7 @@ namespace Loops
             }
             // Calculate the number of teams using integer math.
             numTeams = players / teamSize;
-            // Calculate the number of left over players using the modulus operator.
+            // Calculate the number of left over players using the modulus operator.4
             leftOver = players % teamSize;
             // display results (teams, left over)
             Console.WriteLine($"\nNumber of Teams: {numTeams} \tNumber of Left Over Players: {leftOver}");
