@@ -296,6 +296,9 @@ namespace Loops
                     numStudents++;
                 } else if (curMark == 999) {
                     if (sumOfMarks != 0) {
+                        numStudents--;
+                        Console.WriteLine($"Sum of Marks: {sumOfMarks}");
+                        Console.WriteLine($"Number of Students: {numStudents}");
                         avgMark = sumOfMarks / (double)numStudents;
                         Console.WriteLine($"\nAverage Mark: {avgMark}, Highest Mark: {maxMark}, Lowest Mark: {minMark}");
                     }

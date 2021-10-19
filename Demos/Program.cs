@@ -90,11 +90,11 @@ namespace Demos
             var app9 = new Loops.App9();
             //app9.App("9 - While Loop: Guess the Number Only Play Once");
             var app10 = new Loops.App10();
-            app10.App("10 - Do While Simple Demo");
+            //app10.App("10 - Do While Simple Demo");
             var app11 = new Loops.App11();
             //app11.App("11 - Do While Loop: Class Average with High/Low Play Many Times");
             var app12 = new Loops.App12();
-            //app12.App("12 - Do While Loop: Add Calculator Play Many Times");
+            app12.App("12 - Do While Loop: Add Calculator Play Many Times");
         }
         public void MethodsExceptions()
         {
