@@ -18,7 +18,9 @@ namespace MethodsExceptions
         // most complicated method with input parameters and a return value
         public int add(int n1, int n2)
         { 
-            return n1 + n2;
+            int mySum = n1 + n2;
+            return mySum;
+            //return n1 + n2;
         }
         public void App(string demoName)
         {
@@ -47,7 +49,7 @@ namespace MethodsExceptions
             double result;
             do
             {
-                Console.WriteLine($"{prompt} between {low:n1} and {high:n1}:");
+                Console.WriteLine($"{prompt} between {low:n9} and {high:n1}:");
                 string resultString = Console.ReadLine();
                 result = double.Parse(resultString);
             } while ((result < low) || (result > high));
@@ -102,7 +104,7 @@ namespace MethodsExceptions
         {
             Console.WriteLine($"{demoName} started");
             double windowWidth = getValue("Enter width of window in feet", 2.0, 6.0);
-            Console.WriteLine($"Window Width: {windowWidth} feet");
+            Console.WriteLine($"Window Width: {windowWidth:n1} feet");
             double age = getValue("Enter your age in years", 0, 70);
             Console.WriteLine($"Your Age is: {age} years");
             int num = getNum("Enter a integer number", 0, 1000);

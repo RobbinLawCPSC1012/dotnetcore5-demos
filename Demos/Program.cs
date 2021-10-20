@@ -9,8 +9,8 @@ namespace Demos
             var program = new Program();
             //program.Sequence();
             //program.Decision();
-            program.Loops();
-            //program.MethodsExceptions();
+            //program.Loops();
+            program.MethodsExceptions();
             //program.Arrays();
             //program.Objects();
             //program.Files();
@@ -99,9 +99,9 @@ namespace Demos
         public void MethodsExceptions()
         {
             var app1 = new MethodsExceptions.App1();
-            //app1.App("1 - Methods Simple Demo");
+            app1.App("1 - Methods Simple Demo");
             var app2 = new MethodsExceptions.App2();
-            //app2.App("2 - Methods input Validation Demo");
+            app2.App("2 - Methods input Validation Demo");
             var app3 = new MethodsExceptions.App3();
             //app3.App("3 - Methods Circle Area and Circumference");
             var app4 = new MethodsExceptions.App4();
@@ -115,7 +115,7 @@ namespace Demos
             var app8 = new MethodsExceptions.App8();
             //app8.App("8 - Try Catch Simple Demo");
             var app9 = new MethodsExceptions.App9();
-            app9.App("9 - Try Catch Finally Demo");
+            //app9.App("9 - Try Catch Finally Demo");
             var app10 = new MethodsExceptions.App10();
             //app10.App("10 - Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();
