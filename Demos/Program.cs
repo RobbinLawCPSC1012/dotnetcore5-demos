@@ -94,20 +94,20 @@ namespace Demos
             var app11 = new Loops.App11();
             //app11.App("11 - Do While Loop: Class Average with High/Low Play Many Times");
             var app12 = new Loops.App12();
-            app12.App("12 - Do While Loop: Add Calculator Play Many Times");
+            //app12.App("12 - Do While Loop: Add Calculator Play Many Times");
         }
         public void MethodsExceptions()
         {
             var app1 = new MethodsExceptions.App1();
-            app1.App("1 - Methods Simple Demo");
+            //app1.App("1 - Methods Simple Demo");
             var app2 = new MethodsExceptions.App2();
-            app2.App("2 - Methods input Validation Demo");
+            //app2.App("2 - Methods input Validation Demo");
             var app3 = new MethodsExceptions.App3();
             //app3.App("3 - Methods Circle Area and Circumference");
             var app4 = new MethodsExceptions.App4();
-            //app4.App("4 - Methods Equation of a Line");
+            //app4.App("4 - Methods Equation of a Line with no Validation");
             var app5 = new MethodsExceptions.App5();
-            //app5.App("5 - Methods Math Calculator");
+            app5.App("5 - Methods Math Calculator");
             var app6 = new MethodsExceptions.App6();
             //app6.App("6 - Methods Boxed In");
             var app7 = new MethodsExceptions.App7();

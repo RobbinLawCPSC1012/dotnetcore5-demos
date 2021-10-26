@@ -148,6 +148,8 @@ namespace MethodsExceptions
         {
             Console.WriteLine($"{demoName} started");
             double radius = getNumber("Enter Circle Radius", 2.0, 6.0);
+            double areaCalc = circleArea(radius);
+            Console.WriteLine($"The Circle Area is: {areaCalc:n2}");
             Console.WriteLine($"The Circle Area is: {circleArea(radius):n2}");
             Console.WriteLine($"The Circle Circumference is: {circleCircumference(radius):n2}");
             Console.WriteLine($"{demoName} ended");
@@ -238,6 +240,7 @@ namespace MethodsExceptions
 
                 default:
                     Console.WriteLine("Invalid Option.");
+                    //Recursion
                     return GetChoice();
             }
         }
