@@ -5,6 +5,28 @@ namespace Arrays
     #region
     public class App1
     {
+        private int GetInt(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if (num < 0)
+                        throw new Exception("Must be bigger than zero.");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+
         public void App(string demoName)
         {
             try
@@ -22,8 +44,7 @@ namespace Arrays
                     "HURRICANE --- Category 4",
                     "HURRICANE --- Category 5"
                 };
-                Console.WriteLine("Enter Wind speed in mph:");
-                int speed = int.Parse(Console.ReadLine());
+                int speed = GetInt("Enter Wind speed in mph as a + int: ");
                 int stormLevel = 0;
                 if (speed >= 74 && speed <= 95)
                     stormLevel = 1;
@@ -105,7 +126,6 @@ namespace Arrays
                 // Get Each number for the array from the user.
                 for (int i = 0; i < size; i++)
                 {
-                    Console.Write("Enter a number: ");
                     arr[i] = GetDouble("Enter a number as a + double: ");
                     sum += arr[i];
                 }
@@ -143,7 +163,31 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                // Declare and create a new array of int
+                int[] deck = new int[52];
+                // Declare and initialize a string array.
+                string[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
+                // Declare another array named Ranks
+                string[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10",
+                                "Jack", "Queen", "King", "Ace"};
+                for (int i = 0; i < deck.Length; i++)
+                    deck[i] = i;
+                // Shuffle the Cards
+                Random keygen = new Random();
+                for (int i = 0; i < deck.Length; i++)
+                {
+                    int rndIdx = keygen.Next(deck.Length);
+                    int tmp = deck[i];
+                    deck[i] = deck[rndIdx];
+                    deck[rndIdx] = tmp;
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    int card = deck[i];
+                    string suit = suits[card / 13];
+                    string rank = ranks[card % 13];
+                    Console.WriteLine($"Card {i+1}: {rank} of {suit}");
+                }
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -157,12 +201,98 @@ namespace Arrays
     #region
     public class App4
     {
+        private int GetInt(String msg)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if (num < 0)
+                        throw new Exception("Must be bigger than zero.");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+
+        private double GetDouble(String msg)
+        {
+            bool inValidInput = true;
+            double num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = double.Parse(Console.ReadLine());
+                    if (num < 0.0)
+                        throw new Exception("Must be bigger than zero.");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+
+        private double[] GetItems()
+        {
+            int size = GetInt($"Enter the number of items as a + int: ");
+            double[] arr = new double[size];
+            for (int i = 0; i < size; i++)
+                arr[i] = GetDouble($"Enter next number as a + double: ");
+            return arr;
+        }
+
+        private double AverageValue(double[] numArray)
+        {
+            double sum = 0;
+            foreach(double num in numArray)
+                sum += num;
+            return sum / numArray.Length;
+        }
+
+        private void DisplayArrayElements(double[] numArray)
+        {
+            Console.WriteLine("Number List:");
+            for (int i = 0; i < numArray.Length; i++)
+                Console.Write($"{numArray[i]} ");
+            Console.WriteLine();
+        }
+
+        private void ShuffleArrayElements(double[] arr)
+        {
+            Random r = new Random();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int randIdx = r.Next(arr.Length);
+                double tmp = arr[i];
+                arr[i] = arr[randIdx];
+                arr[randIdx] = tmp;
+            }
+        }
+
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                double[] numbers = GetItems();
+                DisplayArrayElements(numbers);
+                ShuffleArrayElements(numbers);
+                DisplayArrayElements(numbers);
+                double avg = AverageValue(numbers);
+                Console.WriteLine("The average value is " + avg);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

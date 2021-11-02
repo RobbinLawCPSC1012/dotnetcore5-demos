@@ -425,12 +425,12 @@ namespace MethodsExceptions
                     Console.Write(msg);
                     num = int.Parse(Console.ReadLine());
                     if (num < 0)
-                        throw new Exception("Invalid: Must be bigger than zero.");
+                        throw new Exception("Must be bigger than zero.");
                     inValidInput = false; 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"catch: {ex.Message}");
+                    Console.WriteLine($"Invalid: {ex.Message}");
                 }
             }
             return num;
