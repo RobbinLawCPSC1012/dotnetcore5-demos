@@ -515,7 +515,7 @@ namespace MethodsExceptions
     {
         private double getNumber(string prompt, double low, double high)
         {
-            double num = 0;
+            double num = 0.0;
             bool invalidInput = true;
             while (invalidInput)
             {
@@ -524,7 +524,9 @@ namespace MethodsExceptions
                     Console.WriteLine($"{prompt} between {low:n1} and {high:n1}: ");
                     num = double.Parse(Console.ReadLine());
                     if (num < low || num > high)
+                    {
                         throw new Exception("Invalid Input");
+                    }
                     invalidInput = false;
                 }
                 catch (Exception ex)
@@ -536,7 +538,9 @@ namespace MethodsExceptions
         }
         private double circleArea(double radius)
         {
-            return (Math.PI * radius * radius);
+            double result = Math.PI * radius * radius;
+            return result;
+            // return (Math.PI * radius * radius);
         }
         private double circleCircumference(double radius)
         {
