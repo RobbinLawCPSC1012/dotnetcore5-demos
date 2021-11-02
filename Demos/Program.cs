@@ -10,8 +10,8 @@ namespace Demos
             //program.Sequence();
             //program.Decision();
             //program.Loops();
-            program.MethodsExceptions();
-            //program.Arrays();
+            //program.MethodsExceptions();
+            program.Arrays();
             //program.Objects();
             //program.Files();
         }
@@ -115,7 +115,7 @@ namespace Demos
             var app8 = new MethodsExceptions.App8();
             //app8.App("8 - Try Catch Simple Demo");
             var app9 = new MethodsExceptions.App9();
-            app9.App("9 - Try Catch Finally Demo");
+            //app9.App("9 - Try Catch Finally Demo");
             var app10 = new MethodsExceptions.App10();
             //app10.App("10 - Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();
@@ -126,7 +126,7 @@ namespace Demos
         public void Arrays()
         {
             var app1 = new Arrays.App1();
-            app1.App("1 - ");
+            //app1.App("1 - ");
             var app2 = new Arrays.App2();
             app2.App("2 - ");
             var app3 = new Arrays.App3();
