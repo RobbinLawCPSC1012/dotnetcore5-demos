@@ -117,7 +117,7 @@ namespace Demos
             var app9 = new MethodsExceptions.App9();
             //app9.App("9 - Try Catch Finally Demo NOT USED");
             var app10 = new MethodsExceptions.App10();
-            app10.App("10 - Try Catch Circle Area and Circumference");
+            //app10.App("10 - Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();
             //app11.App("11 - Try Catch Boxed In NOT USED");
             var app12 = new MethodsExceptions.App12();
