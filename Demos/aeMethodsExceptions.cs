@@ -409,86 +409,40 @@ namespace MethodsExceptions
                 if (num > 0)
                     inValidInput = false;
                 else
-                    Console.WriteLine("GetInt1: Invalid. Must be bigger than zero.");
+                    Console.WriteLine("Invalid. Must be bigger than zero.");
             }
             return num;
         }
+        
         private int GetInt2(String msg)
         {
             bool inValidInput = true;
             int num = 0;
             while (inValidInput)
             {
-                Console.Write(msg);
                 try
                 {
+                    Console.Write(msg);
                     num = int.Parse(Console.ReadLine());
-                    if (num > 0)
-                        inValidInput = false;
-                    else
-                        Console.WriteLine("GetInt2: Invalid. Must be bigger than zero.");
+                    if (num < 0)
+                        throw new Exception("Invalid: Must be bigger than zero.");
+                    inValidInput = false; 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"GetInt2 catch: {ex.Message}");
-                    throw;
+                    Console.WriteLine($"catch: {ex.Message}");
                 }
             }
             return num;
         }
-        private int GetInt3(String msg)
-        {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
-            {
-                Console.Write(msg);
-                try
-                {
-                    num = int.Parse(Console.ReadLine());
-                    if (num > 0)
-                        inValidInput = false;
-                    else
-                        throw new Exception("GetInt3: Exception Message. Must be bigger than zero.");
-                    Console.WriteLine($"GetInt3 try: Congrats, you entered {num}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"GetInt3 catch: {ex.Message}");
-                    throw;
-                }
-            }
-            return num;
-        }
-        private int GetInt4(String msg)
-        {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
-            {
-                try
-                {
-                    num = GetInt3(msg);
-                    inValidInput = false;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"GetInt4 catch: {ex.Message}");
-                }
-            }
-            return num;
-        }
+        
         public void App(string demoName)
         {
             Console.WriteLine($"{demoName} started");
             int myInt1 = GetInt1($"GetInt1: Enter a + integer value: ");
-            Console.WriteLine($"App try: Congrats, you entered {myInt1}");
+            Console.WriteLine($"Congrats, you entered {myInt1}");
             int myInt2 = GetInt2($"GetInt2: Enter a + integer value: ");
-            Console.WriteLine($"App try: Congrats, you entered {myInt2}");
-            int myInt3 = GetInt3($"GetInt3: Enter a + integer value: ");
-            Console.WriteLine($"App try: Congrats, you entered {myInt3}");
-            int myInt4 = GetInt4($"GetInt4 & 3: Enter a + integer value: ");
-            Console.WriteLine($"App try: Congrats, you entered {myInt4}");
+            Console.WriteLine($"Congrats, you entered {myInt2}");
             Console.WriteLine($"{demoName} ended");
             Console.WriteLine("");
         }
@@ -559,12 +513,45 @@ namespace MethodsExceptions
     #region
     public class App10
     {
+        private double getNumber(string prompt, double low, double high)
+        {
+            double num = 0;
+            bool invalidInput = true;
+            while (invalidInput)
+            {
+                try
+                {
+                    Console.WriteLine($"{prompt} between {low:n1} and {high:n1}: ");
+                    num = double.Parse(Console.ReadLine());
+                    if (num < low || num > high)
+                        throw new Exception("Invalid Input");
+                    invalidInput = false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+            }
+            return num;
+        }
+        private double circleArea(double radius)
+        {
+            return (Math.PI * radius * radius);
+        }
+        private double circleCircumference(double radius)
+        {
+            return (2 * Math.PI * radius);
+        }
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                double radius = getNumber("Enter Circle Radius", 2.0, 6.0);
+                double areaCalc = circleArea(radius);
+                Console.WriteLine($"The Circle Area is: {areaCalc:n2}");
+                Console.WriteLine($"The Circle Area is: {circleArea(radius):n2}");
+                Console.WriteLine($"The Circle Circumference is: {circleCircumference(radius):n2}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

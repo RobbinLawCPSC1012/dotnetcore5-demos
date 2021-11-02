@@ -107,21 +107,21 @@ namespace Demos
             var app4 = new MethodsExceptions.App4();
             //app4.App("4 - Methods Equation of a Line with no Validation");
             var app5 = new MethodsExceptions.App5();
-            app5.App("5 - Methods Math Calculator");
+            //app5.App("5 - Methods Math Calculator NOT USED");
             var app6 = new MethodsExceptions.App6();
-            //app6.App("6 - Methods Boxed In");
+            //app6.App("6 - Methods Boxed In NOT USED");
             var app7 = new MethodsExceptions.App7();
-            //app7.App("7 - Methods Overloading Draw Triangles");
+            //app7.App("7 - Methods Overloading Draw Triangles NOT USED");
             var app8 = new MethodsExceptions.App8();
-            //app8.App("8 - Try Catch Simple Demo");
+            app8.App("8 - Try Catch Simple Demo");
             var app9 = new MethodsExceptions.App9();
-            //app9.App("9 - Try Catch Finally Demo");
+            //app9.App("9 - Try Catch Finally Demo NOT USED");
             var app10 = new MethodsExceptions.App10();
-            //app10.App("10 - Try Catch Circle Area and Circumference");
+            app10.App("10 - Try Catch Circle Area and Circumference");
             var app11 = new MethodsExceptions.App11();
-            //app11.App("11 - Try Catch Boxed In");
+            //app11.App("11 - Try Catch Boxed In NOT USED");
             var app12 = new MethodsExceptions.App12();
-            //app12.App("12 - Try Catch Draw Triangles");
+            //app12.App("12 - Try Catch Draw Triangles NOT USED");
         }
         public void Arrays()
         {
