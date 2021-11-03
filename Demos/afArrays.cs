@@ -158,49 +158,6 @@ namespace Arrays
     #region
     public class App3
     {
-        public void App(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                // Declare and create a new array of int
-                int[] deck = new int[52];
-                // Declare and initialize a string array.
-                string[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
-                // Declare another array named Ranks
-                string[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10",
-                                "Jack", "Queen", "King", "Ace"};
-                for (int i = 0; i < deck.Length; i++)
-                    deck[i] = i;
-                // Shuffle the Cards
-                Random keygen = new Random();
-                for (int i = 0; i < deck.Length; i++)
-                {
-                    int rndIdx = keygen.Next(deck.Length);
-                    int tmp = deck[i];
-                    deck[i] = deck[rndIdx];
-                    deck[rndIdx] = tmp;
-                }
-                for (int i = 0; i < 5; i++)
-                {
-                    int card = deck[i];
-                    string suit = suits[card / 13];
-                    string rank = ranks[card % 13];
-                    Console.WriteLine($"Card {i+1}: {rank} of {suit}");
-                }
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-    }
-    #endregion
-    #region
-    public class App4
-    {
         private int GetInt(String msg)
         {
             bool inValidInput = true;
@@ -254,19 +211,19 @@ namespace Arrays
             return arr;
         }
 
-        private double AverageValue(double[] numArray)
+        private double AverageValueOfArrayElements(double[] arr)
         {
             double sum = 0;
-            foreach(double num in numArray)
+            foreach(double num in arr)
                 sum += num;
-            return sum / numArray.Length;
+            return sum / arr.Length;
         }
 
-        private void DisplayArrayElements(double[] numArray)
+        private void DisplayArrayElements(double[] arr)
         {
             Console.WriteLine("Number List:");
-            for (int i = 0; i < numArray.Length; i++)
-                Console.Write($"{numArray[i]} ");
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i]} ");
             Console.WriteLine();
         }
 
@@ -282,6 +239,31 @@ namespace Arrays
             }
         }
 
+        /* Sort with SELECTION SORT */
+        static void SortArrayElementsDescending(double[] arr)
+        {
+            for (int scanIdx = 0; scanIdx < arr.Length - 1; scanIdx++)
+            {
+                int maxIdx = scanIdx;
+                for (int i = scanIdx + 1; i < arr.Length; i++)
+                {
+                    if (arr[i] > arr[maxIdx])
+                        maxIdx = i;
+                }
+                if (maxIdx != scanIdx)
+                {
+                    Swap(arr, scanIdx, maxIdx);
+                }
+            }
+        }
+
+        static void Swap(double[] arr, int a, int b)
+        {
+            double tmp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = tmp;
+        }
+
         public void App(string demoName)
         {
             try
@@ -291,8 +273,29 @@ namespace Arrays
                 DisplayArrayElements(numbers);
                 ShuffleArrayElements(numbers);
                 DisplayArrayElements(numbers);
-                double avg = AverageValue(numbers);
+                double avg = AverageValueOfArrayElements(numbers);
                 Console.WriteLine("The average value is " + avg);
+                SortArrayElementsDescending(numbers);
+                DisplayArrayElements(numbers);
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+    }
+    #endregion
+    #region
+    public class App4
+    {
+        public void App(string demoName)
+        {
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -444,7 +447,31 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                // Declare and create a new array of int
+                int[] deck = new int[52];
+                // Declare and initialize a string array.
+                string[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
+                // Declare another array named Ranks
+                string[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10",
+                                "Jack", "Queen", "King", "Ace"};
+                for (int i = 0; i < deck.Length; i++)
+                    deck[i] = i;
+                // Shuffle the Cards
+                Random keygen = new Random();
+                for (int i = 0; i < deck.Length; i++)
+                {
+                    int rndIdx = keygen.Next(deck.Length);
+                    int tmp = deck[i];
+                    deck[i] = deck[rndIdx];
+                    deck[rndIdx] = tmp;
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    int card = deck[i];
+                    string suit = suits[card / 13];
+                    string rank = ranks[card % 13];
+                    Console.WriteLine($"Card {i+1}: {rank} of {suit}");
+                }
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
