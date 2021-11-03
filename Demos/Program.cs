@@ -101,9 +101,9 @@ namespace Demos
             var app1 = new MethodsExceptions.App1();
             //app1.App("1 - Methods Simple Demo");
             var app2 = new MethodsExceptions.App2();
-            //app2.App("2 - Methods input Validation Demo");
+            //app2.App("2 - Methods Simple Input Validation Demo");
             var app3 = new MethodsExceptions.App3();
-            //app3.App("3 - Methods Circle Area and Circumference");
+            //app3.App("3 - Methods Circle Area and Circumference with no validation");
             var app4 = new MethodsExceptions.App4();
             //app4.App("4 - Methods Equation of a Line with no Validation");
             var app5 = new MethodsExceptions.App5();
