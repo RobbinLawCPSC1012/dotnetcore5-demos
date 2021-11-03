@@ -32,6 +32,7 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
+                // char myChar = 'a';
                 char[] myCharArray = {'c', 'd', 'e'};
                 int[] myIntArray = {1, 2, 4, 7};
                 double[] myDoubleArray = {3.4, 6.8, 88.88};
@@ -103,8 +104,8 @@ namespace Arrays
                 {
                     Console.Write(msg);
                     num = double.Parse(Console.ReadLine());
-                    if (num < 0.0)
-                        throw new Exception("Must be bigger than zero.");
+                    // if (num < 0.0)
+                    //     throw new Exception("Must be bigger than zero.");
                     inValidInput = false; 
                 }
                 catch (Exception ex)

@@ -126,9 +126,9 @@ namespace Demos
         public void Arrays()
         {
             var app1 = new Arrays.App1();
-            app1.App("1 - Arrays Simple - Stormy");
+            //app1.App("1 - Arrays Simple - Stormy");
             var app2 = new Arrays.App2();
-            //app2.App("2 - ");
+            app2.App("2 - ");
             var app3 = new Arrays.App3();
             //app3.App("3 - ");
             var app4 = new Arrays.App4();
