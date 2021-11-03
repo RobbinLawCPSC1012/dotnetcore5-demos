@@ -126,29 +126,29 @@ namespace Demos
         public void Arrays()
         {
             var app1 = new Arrays.App1();
-            app1.App("1 - ");
+            app1.App("1 - Arrays Simple - Stormy");
             var app2 = new Arrays.App2();
-            app2.App("2 - ");
+            //app2.App("2 - ");
             var app3 = new Arrays.App3();
-            app3.App("3 - ");
+            //app3.App("3 - ");
             var app4 = new Arrays.App4();
-            app4.App("4 - ");
+            //app4.App("4 - ");
             var app5 = new Arrays.App5();
-            app5.App("5 - ");
+            //app5.App("5 - ");
             var app6 = new Arrays.App6();
-            app6.App("6 - ");
+            //app6.App("6 - ");
             var app7 = new Arrays.App7();
-            app7.App("7 - ");
+            //app7.App("7 - ");
             var app8 = new Arrays.App8();
-            app8.App("8 - ");
+            //app8.App("8 - ");
             var app9 = new Arrays.App9();
-            app9.App("9 - ");
+            //app9.App("9 - ");
             var app10 = new Arrays.App10();
-            app10.App("10 - ");
+            //app10.App("10 - ");
             var app11 = new Arrays.App11();
-            app11.App("11 - ");
+            //app11.App("11 - ");
             var app12 = new Arrays.App12();
-            app12.App("12 - ");
+            //app12.App("12 - ");
         }
         public void Objects()
         {
