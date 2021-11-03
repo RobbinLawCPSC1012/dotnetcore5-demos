@@ -126,13 +126,13 @@ namespace Demos
         public void Arrays()
         {
             var app1 = new Arrays.App1();
-            //app1.App("1 - Arrays Simple - Stormy");
+            //app1.App("1-Arrays-Simple-Stormy");
             var app2 = new Arrays.App2();
-            app2.App("2 - ");
+            //app2.App("2-Arrays-create empty double array-add elements in for loop-traverse to find min/max");
             var app3 = new Arrays.App3();
-            //app3.App("3 - ");
+            //app3.App("3-Arrays-more complex-sorting");
             var app4 = new Arrays.App4();
-            //app4.App("4 - ");
+            app4.App("4 - Arrays vs Lists");
             var app5 = new Arrays.App5();
             //app5.App("5 - ");
             var app6 = new Arrays.App6();
@@ -148,7 +148,7 @@ namespace Demos
             var app11 = new Arrays.App11();
             //app11.App("11 - ");
             var app12 = new Arrays.App12();
-            //app12.App("12 - ");
+            //app12.App("12-Arrays-Deck of Cards-NOT USED");
         }
         public void Objects()
         {

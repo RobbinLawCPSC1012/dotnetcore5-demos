@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace Arrays
 {
     #region
     public class App1
     {
-        private int GetInt(String msg)
+        private int GetPositiveInt(String msg)
         {
             bool inValidInput = true;
             int num = 0;
@@ -45,7 +46,7 @@ namespace Arrays
                     "HURRICANE --- Category 4",
                     "HURRICANE --- Category 5"
                 };
-                int speed = GetInt("Enter Wind speed in mph as a + int: ");
+                int speed = GetPositiveInt("Enter Wind speed in mph as a + int: ");
                 int stormLevel = 0;
                 if (speed >= 74 && speed <= 95)
                     stormLevel = 1;
@@ -72,48 +73,36 @@ namespace Arrays
     #region
     public class App2
     {
-        private int GetInt(String msg)
+        private int GetPositiveInt(String msg)
         {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
+            try
             {
-                try
-                {
-                    Console.Write(msg);
-                    num = int.Parse(Console.ReadLine());
-                    if (num < 0)
-                        throw new Exception("Must be bigger than zero.");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
+                Console.Write(msg);
+                int num = int.Parse(Console.ReadLine());
+                if (num < 0)
+                    throw new Exception("Must be bigger than zero.");
+                return num;
             }
-            return num;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetPositiveInt(msg);
+            }
         }
 
         private double GetDouble(String msg)
         {
-            bool inValidInput = true;
-            double num = 0;
-            while (inValidInput)
+            try
             {
-                try
-                {
-                    Console.Write(msg);
-                    num = double.Parse(Console.ReadLine());
-                    // if (num < 0.0)
-                    //     throw new Exception("Must be bigger than zero.");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
+                Console.Write(msg);
+                double num = double.Parse(Console.ReadLine());
+                return num;
             }
-            return num;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetDouble(msg);
+            }
         }
 
         public void App(string demoName)
@@ -121,7 +110,7 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
-                int size = GetInt("Enter Size as a + integer: ");
+                int size = GetPositiveInt("Enter Size as a + integer: ");
                 double[] arr = new double[size];
                 double sum = 0;
                 // Get Each number for the array from the user.
@@ -145,7 +134,7 @@ namespace Arrays
                         max = arr[i];
                 }
                 Console.WriteLine($"Number of Elements larger than average: {bigCount}");
-                Console.WriteLine($"MaxElt: {max} minElt: {min}");
+                Console.WriteLine($"max: {max} min: {min}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -159,60 +148,50 @@ namespace Arrays
     #region
     public class App3
     {
-        private int GetInt(String msg)
+        private int GetPositiveInt(String msg)
         {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
+            try
             {
-                try
-                {
-                    Console.Write(msg);
-                    num = int.Parse(Console.ReadLine());
-                    if (num < 0)
-                        throw new Exception("Must be bigger than zero.");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
+                Console.Write(msg);
+                int num = int.Parse(Console.ReadLine());
+                if (num < 0)
+                    throw new Exception("Must be bigger than zero.");
+                return num;
             }
-            return num;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetPositiveInt(msg);
+            }
         }
 
         private double GetDouble(String msg)
         {
-            bool inValidInput = true;
-            double num = 0;
-            while (inValidInput)
+            try
             {
-                try
-                {
-                    Console.Write(msg);
-                    num = double.Parse(Console.ReadLine());
-                    if (num < 0.0)
-                        throw new Exception("Must be bigger than zero.");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
+                Console.Write(msg);
+                double num = double.Parse(Console.ReadLine());
+                if (num < 0.0)
+                    throw new Exception("Must be bigger than zero.");
+                return num;
             }
-            return num;
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetDouble(msg);
+            }
+        }        
 
-        private double[] GetItems()
+        private double[] GetArrayItems()
         {
-            int size = GetInt($"Enter the number of items as a + int: ");
+            int size = GetPositiveInt($"Enter the number of items as a + int: ");
             double[] arr = new double[size];
             for (int i = 0; i < size; i++)
                 arr[i] = GetDouble($"Enter next number as a + double: ");
             return arr;
         }
 
-        private double AverageValueOfArrayElements(double[] arr)
+        private double AverageValueOfArrayItems(double[] arr)
         {
             double sum = 0;
             foreach(double num in arr)
@@ -220,7 +199,7 @@ namespace Arrays
             return sum / arr.Length;
         }
 
-        private void DisplayArrayElements(double[] arr)
+        private void DisplayArrayItems(double[] arr)
         {
             Console.WriteLine("Number List:");
             for (int i = 0; i < arr.Length; i++)
@@ -228,7 +207,7 @@ namespace Arrays
             Console.WriteLine();
         }
 
-        private void ShuffleArrayElements(double[] arr)
+        private void ShuffleArrayItems(double[] arr)
         {
             Random r = new Random();
             for (int i = 0; i < arr.Length; i++)
@@ -241,7 +220,7 @@ namespace Arrays
         }
 
         /* Sort with SELECTION SORT */
-        static void SortArrayElementsDescending(double[] arr)
+        static void SortArrayItemsDescending(double[] arr)
         {
             for (int scanIdx = 0; scanIdx < arr.Length - 1; scanIdx++)
             {
@@ -270,14 +249,14 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
-                double[] numbers = GetItems();
-                DisplayArrayElements(numbers);
-                ShuffleArrayElements(numbers);
-                DisplayArrayElements(numbers);
-                double avg = AverageValueOfArrayElements(numbers);
+                double[] numbers = GetArrayItems();
+                DisplayArrayItems(numbers);
+                //ShuffleArrayItems(numbers);
+                //DisplayArrayItems(numbers);
+                double avg = AverageValueOfArrayItems(numbers);
                 Console.WriteLine("The average value is " + avg);
-                SortArrayElementsDescending(numbers);
-                DisplayArrayElements(numbers);
+                SortArrayItemsDescending(numbers);
+                DisplayArrayItems(numbers);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -289,14 +268,86 @@ namespace Arrays
     }
     #endregion
     #region
+    
     public class App4
     {
+        private int GetPositiveInt(String msg)
+        {
+            try
+            {
+                Console.Write(msg);
+                int num = int.Parse(Console.ReadLine());
+                if (num < 0)
+                    throw new Exception("Must be bigger than zero.");
+                return num;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetPositiveInt(msg);
+            }
+        }
+        private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
+        private string GetString(String msg)
+        {
+            try
+            {
+                Console.Write(msg);
+                string str = Console.ReadLine();
+                foreach(char character in SPECIALCHARACTERS)
+                if (str.Contains(character))
+                    throw new FormatException($"String contains an invalid character.");
+                return str;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetString(msg);
+            }
+        }
+        private void WithArrays()
+        {
+            Console.WriteLine("*** Using traditional arrays where size must be statically set at declaration ***");
+            var studentCount = GetPositiveInt("How many students in your class? ");
+            string[] studentNames = new string[studentCount];
+            int[] studentGrades = new int[studentCount];
+            for (int i = 0; i < studentCount; i++)
+            {
+                studentNames[i] = GetString("Student Name: ");
+                studentGrades[i] = GetPositiveInt("Student Grade: ");
+            }
+            for (int i = 0; i < studentCount; i++)
+            {
+                Console.WriteLine($"Name: {studentNames[i]}, Grade: {studentGrades[i]}");
+            }
+        }
+
+        private void WithLists()
+        {
+            Console.WriteLine("*** Using dynamic arrays called lists where size is not set at declaration ***");
+            List<string> studentNames = new List<string>();
+            List<int> studentGrades = new List<int>();
+            var adding = true;
+            while(adding)
+            {
+                studentNames.Add(GetString("Student Name: "));
+                studentGrades.Add(GetPositiveInt("Student Grade: "));
+                if (GetString("Add another? y/n: ") == "n")
+                    adding = false;
+            }
+            for (int i = 0; i < studentNames.Count; i++)
+            {
+                Console.WriteLine($"Name: {studentNames[i]}, Grade: {studentGrades[i]}");
+            }
+        }
+
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                WithArrays();
+                WithLists();
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
