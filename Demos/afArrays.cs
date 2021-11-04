@@ -200,6 +200,23 @@ namespace Arrays
                 return GetPositiveInt(msg);
             }
         }
+        
+        private int GetIntBetweenMinMax(String msg, int min, int max)
+        {
+            try
+            {
+                Console.Write(msg);
+                int num = int.Parse(Console.ReadLine());
+                if (num < min || num > max)
+                    throw new Exception($"Must be between {min} and {max}");
+                return num;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Invalid: {ex.Message}");
+                return GetIntBetweenMinMax(msg, min, max);
+            }
+        }
         private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
         private string GetString(String msg)
         {
@@ -227,7 +244,7 @@ namespace Arrays
             for (int i = 0; i < studentCount; i++)
             {
                 studentNames[i] = GetString("Student Name: ");
-                studentGrades[i] = GetPositiveInt("Student Grade: ");
+                studentGrades[i] = GetIntBetweenMinMax("Student Grade: ", 0, 100);
             }
             for (int i = 0; i < studentCount; i++)
             {
@@ -244,7 +261,7 @@ namespace Arrays
             while(adding)
             {
                 studentNames.Add(GetString("Student Name: "));
-                studentGrades.Add(GetPositiveInt("Student Grade: "));
+                studentGrades.Add(GetIntBetweenMinMax("Student Grade: ", 0, 100));
                 if (GetString("Add another? y/n: ") == "n")
                     adding = false;
             }
