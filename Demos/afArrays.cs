@@ -124,7 +124,7 @@ namespace Arrays
 
         private double MinValueOfArrayItems(double[] arr)
         {
-            double min = 0;
+            double min = arr[0];
                 for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i] < min)
@@ -135,7 +135,7 @@ namespace Arrays
 
         private double MaxValueOfArrayItems(double[] arr)
         {
-            double max = 0;
+            double max = arr[0];
                 for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i] > max)
@@ -144,9 +144,9 @@ namespace Arrays
                 return max;
         }
 
-        private void DisplayArrayItems(double[] arr)
+        private void DisplayArrayItems(double[] arr, string msg)
         {
-            Console.WriteLine("Number List:");
+            Console.WriteLine(msg);
             for (int i = 0; i < arr.Length; i++)
                 Console.Write($"{arr[i]} ");
             Console.WriteLine();
@@ -158,7 +158,7 @@ namespace Arrays
             {
                 Console.WriteLine($"{demoName} started");
                 double[] numbers = GetArrayItems();
-                DisplayArrayItems(numbers);
+                DisplayArrayItems(numbers, "Entered Numbers:");
                 double avg = AverageValueOfArrayItems(numbers);
                 Console.WriteLine("The average value is " + avg);
                 double min = MinValueOfArrayItems(numbers);
@@ -166,10 +166,10 @@ namespace Arrays
                 Console.WriteLine($"min: {min} max: {max}");
                 // Sort array in ascending order.
                 Array.Sort(numbers);
-                DisplayArrayItems(numbers);
+                DisplayArrayItems(numbers, "Sorted Accending:");
                 // reverse array to sort in decending order.
                 Array.Reverse(numbers);
-                DisplayArrayItems(numbers);
+                DisplayArrayItems(numbers, "Sorted Decending");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
