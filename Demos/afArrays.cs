@@ -105,98 +105,43 @@ namespace Arrays
             }
         }
 
-        public void App(string demoName)
-        {
-            try
-            {
-                Console.WriteLine($"{demoName} started");
-                int size = GetPositiveInt("Enter Size as a + integer: ");
-                double[] arr = new double[size];
-                double sum = 0;
-                // Get Each number for the array from the user.
-                for (int i = 0; i < size; i++)
-                {
-                    arr[i] = GetDouble("Enter a number as a + double: ");
-                    sum += arr[i];
-                }
-                double avg = sum / size;
-                Console.WriteLine($"Num Elements: {size} Average: {avg}");
-                double min = arr[0];
-                double max = arr[0];
-                double bigCount = 0;
-                for (int i = 0; i < size; i++)
-                {
-                    if (arr[i] > avg)
-                        bigCount++;
-                    if (arr[i] < min)
-                        min = arr[i];
-                    if (arr[i] > max)
-                        max = arr[i];
-                }
-                Console.WriteLine($"Number of Elements larger than average: {bigCount}");
-                Console.WriteLine($"max: {max} min: {min}");
-                Console.WriteLine($"{demoName} ended");
-                Console.WriteLine("");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
-            }
-        }
-    }
-    #endregion
-    #region
-    public class App3
-    {
-        private int GetPositiveInt(String msg)
-        {
-            try
-            {
-                Console.Write(msg);
-                int num = int.Parse(Console.ReadLine());
-                if (num < 0)
-                    throw new Exception("Must be bigger than zero.");
-                return num;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetPositiveInt(msg);
-            }
-        }
-
-        private double GetDouble(String msg)
-        {
-            try
-            {
-                Console.Write(msg);
-                double num = double.Parse(Console.ReadLine());
-                if (num < 0.0)
-                    throw new Exception("Must be bigger than zero.");
-                return num;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetDouble(msg);
-            }
-        }        
-
         private double[] GetArrayItems()
         {
             int size = GetPositiveInt($"Enter the number of items as a + int: ");
             double[] arr = new double[size];
-            for (int i = 0; i < size; i++)
-                arr[i] = GetDouble($"Enter next number as a + double: ");
+            for (int i = 0; i < arr.Length; i++)
+                arr[i] = GetDouble($"Enter next number as a double: ");
             return arr;
         }
 
         private double AverageValueOfArrayItems(double[] arr)
         {
             double sum = 0;
-            foreach(double num in arr)
-                sum += num;
+            for (int i = 0; i < arr.Length; i++)
+                sum += arr[i];
             return sum / arr.Length;
+        }
+
+        private double MinValueOfArrayItems(double[] arr)
+        {
+            double min = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] < min)
+                        min = arr[i];
+                }
+                return min;
+        }
+
+        private double MaxValueOfArrayItems(double[] arr)
+        {
+            double max = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] > max)
+                        max = arr[i];
+                }
+                return max;
         }
 
         private void DisplayArrayItems(double[] arr)
@@ -207,43 +152,6 @@ namespace Arrays
             Console.WriteLine();
         }
 
-        private void ShuffleArrayItems(double[] arr)
-        {
-            Random r = new Random();
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int randIdx = r.Next(arr.Length);
-                double tmp = arr[i];
-                arr[i] = arr[randIdx];
-                arr[randIdx] = tmp;
-            }
-        }
-
-        /* Sort with SELECTION SORT */
-        static void SortArrayItemsDescending(double[] arr)
-        {
-            for (int scanIdx = 0; scanIdx < arr.Length - 1; scanIdx++)
-            {
-                int maxIdx = scanIdx;
-                for (int i = scanIdx + 1; i < arr.Length; i++)
-                {
-                    if (arr[i] > arr[maxIdx])
-                        maxIdx = i;
-                }
-                if (maxIdx != scanIdx)
-                {
-                    Swap(arr, scanIdx, maxIdx);
-                }
-            }
-        }
-
-        static void Swap(double[] arr, int a, int b)
-        {
-            double tmp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = tmp;
-        }
-
         public void App(string demoName)
         {
             try
@@ -251,11 +159,16 @@ namespace Arrays
                 Console.WriteLine($"{demoName} started");
                 double[] numbers = GetArrayItems();
                 DisplayArrayItems(numbers);
-                //ShuffleArrayItems(numbers);
-                //DisplayArrayItems(numbers);
                 double avg = AverageValueOfArrayItems(numbers);
                 Console.WriteLine("The average value is " + avg);
-                SortArrayItemsDescending(numbers);
+                double min = MinValueOfArrayItems(numbers);
+                double max = MaxValueOfArrayItems(numbers);
+                Console.WriteLine($"min: {min} max: {max}");
+                // Sort array in ascending order.
+                Array.Sort(numbers);
+                DisplayArrayItems(numbers);
+                // reverse array to sort in decending order.
+                Array.Reverse(numbers);
                 DisplayArrayItems(numbers);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
@@ -269,7 +182,7 @@ namespace Arrays
     #endregion
     #region
     
-    public class App4
+    public class App3
     {
         private int GetPositiveInt(String msg)
         {
@@ -348,6 +261,25 @@ namespace Arrays
                 Console.WriteLine($"{demoName} started");
                 WithArrays();
                 WithLists();
+                Console.WriteLine($"{demoName} ended");
+                Console.WriteLine("");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in {demoName}: {ex.Message}");
+            }
+        }
+    }
+    #endregion
+    #region
+    public class App4
+    {
+        public void App(string demoName)
+        {
+            try
+            {
+                Console.WriteLine($"{demoName} started");
+                
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
