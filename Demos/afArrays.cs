@@ -36,7 +36,14 @@ namespace Arrays
                 // char myChar = 'a';
                 char[] myCharArray = {'c', 'd', 'e'};
                 int[] myIntArray = {1, 2, 4, 7};
-                double[] myDoubleArray = {3.4, 6.8, 88.88};
+                int myDoubleArraySize = 2;
+                double[] myDoubleArray = new double[myDoubleArraySize];
+                myDoubleArray[0] = 55.3;
+                myDoubleArray[1] = 88.3;
+                for(int i = 0; i < myDoubleArray.Length; i++)
+                {
+                    Console.WriteLine($"index: {i}; value: {myDoubleArray[i]}");
+                }
                 string[] stormStrength =
                 {
                     "No Hurricane. It's just windy yo.",

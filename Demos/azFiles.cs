@@ -12,7 +12,17 @@ namespace Files
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                const string csvFileName = "Data.dat";
+                string[] csvLines1 = new string[2];
+                csvLines1[0] = "first,line,of,csv";
+                csvLines1[1] = "second,line,of,csv";
+                List<string> csvLines2 = new();
+                csvLines2.Add("first,line,of,csv");
+                csvLines2.Add("second,line,of,csv");
+                csvLines2.Add("third,line,of,csv");
+                //write to a csv file. requires System.IOs    
+                File.WriteAllLines(csvFileName, csvLines1);
+                Console.WriteLine($"Data successfully written to file at: {Path.GetFullPath(csvFileName)}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -31,7 +41,18 @@ namespace Files
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                const string csvFileName = "Data.dat";
+                string[] csvFileInput = File.ReadAllLines(csvFileName);
+                for(int i = 0; i < csvFileInput.Length; i++)
+                {
+                    Console.WriteLine($"lineIndex: {i}; line: {csvFileInput[i]}");
+                    string[] items = csvFileInput[i].Split(',');
+                    for(int j = 0; j < items.Length; j++)
+                    {
+                        Console.WriteLine($"itemIndex: {j}; item: {items[j]}");
+                    }
+                    Console.WriteLine();
+                }
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

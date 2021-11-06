@@ -11,9 +11,9 @@ namespace Demos
             //program.Decision();
             //program.Loops();
             //program.MethodsExceptions();
-            program.Arrays();
+            //program.Arrays();
             //program.Objects();
-            //program.Files();
+            program.Files();
         }
         public void Sequence()
         {
@@ -184,9 +184,9 @@ namespace Demos
             var app2 = new Files.App2();
             app2.App("2 - ");
             var app3 = new Files.App3();
-            app3.App("3 - ");
+            //app3.App("3 - ");
             var app4 = new Files.App4();
-            app4.App("4 - ");
+            //app4.App("4 - ");
         }
     }
 }
