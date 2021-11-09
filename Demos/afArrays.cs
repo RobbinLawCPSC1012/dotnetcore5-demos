@@ -79,61 +79,67 @@ namespace Arrays
     #endregion
     #region
     public class App2
-    {
-        private int GetPositiveIntMaxSize(String msg, int maxSize)
+    {        
+        private int GetIntBetweenMinMax(String msg, int min, int max)
         {
-            try
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
             {
-                Console.Write(msg);
-                int num = int.Parse(Console.ReadLine());
-                if (num < 0)
-                    throw new Exception($"Must be bigger than zero.");
-                if (num > maxSize)
-                    throw new Exception($"Must be smaller than {maxSize}");
-                return num;
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if (num < min || num > max)
+                        throw new Exception($"Must be between {min} and {max}");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetPositiveIntMaxSize(msg, maxSize);
-            }
+            return num;
         }
 
         private double GetDouble(String msg)
         {
-            try
+            bool inValidInput = true;
+            double num = 0;
+            while (inValidInput)
             {
-                Console.Write(msg);
-                double num = double.Parse(Console.ReadLine());
-                return num;
+                try
+                {
+                    Console.Write(msg);
+                    num = double.Parse(Console.ReadLine());
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetDouble(msg);
-            }
+            return num;
         }
 
-        private int GetArrayItems(double[] arr, int maxSize)
+        private void GetArrayItems(double[] arr)
         {
-            int size = GetPositiveIntMaxSize($"Enter the number of items as a + int <= {maxSize}: ", maxSize);
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < arr.Length; i++)
                 arr[i] = GetDouble($"Enter next number as a double: ");
-            return size;
         }
 
-        private double AverageValueOfArrayItems(double[] arr, int size)
+        private double AverageValueOfArrayItems(double[] arr)
         {
             double sum = 0;
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < arr.Length; i++)
                 sum += arr[i];
-            return sum / size;
+            return sum / arr.Length;
         }
 
-        private double MinValueOfArrayItems(double[] arr, int size)
+        private double MinValueOfArrayItems(double[] arr)
         {
             double min = arr[0];
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i] < min)
                         min = arr[i];
@@ -141,10 +147,10 @@ namespace Arrays
                 return min;
         }
 
-        private double MaxValueOfArrayItems(double[] arr, int size)
+        private double MaxValueOfArrayItems(double[] arr)
         {
             double max = arr[0];
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i] > max)
                         max = arr[i];
@@ -152,10 +158,10 @@ namespace Arrays
                 return max;
         }
 
-        private void DisplayArrayItems(double[] arr, string msg, int size)
+        private void DisplayArrayItems(double[] arr, string msg)
         {
             Console.WriteLine(msg);
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < arr.Length; i++)
                 Console.Write($"{arr[i]} ");
             Console.WriteLine();
         }
@@ -166,20 +172,23 @@ namespace Arrays
             {
                 Console.WriteLine($"{demoName} started");
                 //double[] numbers = GetArrayItems();
-                double[] numbers = new double[100];
-                int size = GetArrayItems(numbers, 100);
-                DisplayArrayItems(numbers, "Entered Numbers:", size);
-                double avg = AverageValueOfArrayItems(numbers, size);
+                int minSize = 0;
+                int maxSize = 100;
+                int size = GetIntBetweenMinMax($"Enter the number of items as a + int between {minSize} and {maxSize}: ", minSize, maxSize);
+                double[] numbers = new double[size];
+                GetArrayItems(numbers);
+                DisplayArrayItems(numbers, "Entered Numbers:");
+                double avg = AverageValueOfArrayItems(numbers);
                 Console.WriteLine("The average value is " + avg);
-                double min = MinValueOfArrayItems(numbers, size);
-                double max = MaxValueOfArrayItems(numbers, size);
+                double min = MinValueOfArrayItems(numbers);
+                double max = MaxValueOfArrayItems(numbers);
                 Console.WriteLine($"min: {min} max: {max}");
                 // Sort array in ascending order.
                 Array.Sort(numbers);
-                DisplayArrayItems(numbers, "Sorted Accending:", size);
+                DisplayArrayItems(numbers, "Sorted Accending:");
                 // reverse array to sort in decending order.
                 Array.Reverse(numbers);
-                DisplayArrayItems(numbers, "Sorted Decending", size);
+                DisplayArrayItems(numbers, "Sorted Decending");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -194,61 +203,56 @@ namespace Arrays
     
     public class App3
     {
-        private int GetPositiveInt(String msg)
-        {
-            try
-            {
-                Console.Write(msg);
-                int num = int.Parse(Console.ReadLine());
-                if (num < 0)
-                    throw new Exception("Must be bigger than zero.");
-                return num;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetPositiveInt(msg);
-            }
-        }
-        
         private int GetIntBetweenMinMax(String msg, int min, int max)
         {
-            try
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
             {
-                Console.Write(msg);
-                int num = int.Parse(Console.ReadLine());
-                if (num < min || num > max)
-                    throw new Exception($"Must be between {min} and {max}");
-                return num;
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if (num < min || num > max)
+                        throw new Exception($"Must be between {min} and {max}");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetIntBetweenMinMax(msg, min, max);
-            }
+            return num;
         }
+
         private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
         private string GetString(String msg)
         {
-            try
+            bool inValidInput = true;
+            string str = "";
+            while (inValidInput)
             {
-                Console.Write(msg);
-                string str = Console.ReadLine();
-                foreach(char character in SPECIALCHARACTERS)
-                if (str.Contains(character))
-                    throw new FormatException($"String contains an invalid character.");
-                return str;
+                try
+                {
+                    Console.Write(msg);
+                    str = Console.ReadLine();
+                    foreach(char character in SPECIALCHARACTERS)
+                    if (str.Contains(character))
+                        throw new FormatException($"String contains an invalid character.");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Invalid: {ex.Message}");
-                return GetString(msg);
-            }
+            return str;
         }
+
         private void WithArrays()
         {
             Console.WriteLine("*** Using traditional arrays where size must be statically set at declaration ***");
-            var studentCount = GetPositiveInt("How many students in your class? ");
+            int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100);
             string[] studentNames = new string[studentCount];
             int[] studentGrades = new int[studentCount];
             for (int i = 0; i < studentCount; i++)
