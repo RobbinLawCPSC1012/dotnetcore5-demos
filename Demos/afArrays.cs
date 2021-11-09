@@ -80,20 +80,22 @@ namespace Arrays
     #region
     public class App2
     {
-        private int GetPositiveInt(String msg)
+        private int GetPositiveIntMaxSize(String msg, int maxSize)
         {
             try
             {
                 Console.Write(msg);
                 int num = int.Parse(Console.ReadLine());
                 if (num < 0)
-                    throw new Exception("Must be bigger than zero.");
+                    throw new Exception($"Must be bigger than zero.");
+                if (num > maxSize)
+                    throw new Exception($"Must be smaller than {maxSize}");
                 return num;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid: {ex.Message}");
-                return GetPositiveInt(msg);
+                return GetPositiveIntMaxSize(msg, maxSize);
             }
         }
 
@@ -112,27 +114,26 @@ namespace Arrays
             }
         }
 
-        private double[] GetArrayItems()
+        private int GetArrayItems(double[] arr, int maxSize)
         {
-            int size = GetPositiveInt($"Enter the number of items as a + int: ");
-            double[] arr = new double[size];
-            for (int i = 0; i < arr.Length; i++)
+            int size = GetPositiveIntMaxSize($"Enter the number of items as a + int <= {maxSize}: ", maxSize);
+            for (int i = 0; i < size; i++)
                 arr[i] = GetDouble($"Enter next number as a double: ");
-            return arr;
+            return size;
         }
 
-        private double AverageValueOfArrayItems(double[] arr)
+        private double AverageValueOfArrayItems(double[] arr, int size)
         {
             double sum = 0;
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < size; i++)
                 sum += arr[i];
-            return sum / arr.Length;
+            return sum / size;
         }
 
-        private double MinValueOfArrayItems(double[] arr)
+        private double MinValueOfArrayItems(double[] arr, int size)
         {
             double min = arr[0];
-                for (int i = 0; i < arr.Length; i++)
+                for (int i = 0; i < size; i++)
                 {
                     if (arr[i] < min)
                         min = arr[i];
@@ -140,10 +141,10 @@ namespace Arrays
                 return min;
         }
 
-        private double MaxValueOfArrayItems(double[] arr)
+        private double MaxValueOfArrayItems(double[] arr, int size)
         {
             double max = arr[0];
-                for (int i = 0; i < arr.Length; i++)
+                for (int i = 0; i < size; i++)
                 {
                     if (arr[i] > max)
                         max = arr[i];
@@ -151,10 +152,10 @@ namespace Arrays
                 return max;
         }
 
-        private void DisplayArrayItems(double[] arr, string msg)
+        private void DisplayArrayItems(double[] arr, string msg, int size)
         {
             Console.WriteLine(msg);
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < size; i++)
                 Console.Write($"{arr[i]} ");
             Console.WriteLine();
         }
@@ -164,19 +165,21 @@ namespace Arrays
             try
             {
                 Console.WriteLine($"{demoName} started");
-                double[] numbers = GetArrayItems();
-                DisplayArrayItems(numbers, "Entered Numbers:");
-                double avg = AverageValueOfArrayItems(numbers);
+                //double[] numbers = GetArrayItems();
+                double[] numbers = new double[100];
+                int size = GetArrayItems(numbers, 100);
+                DisplayArrayItems(numbers, "Entered Numbers:", size);
+                double avg = AverageValueOfArrayItems(numbers, size);
                 Console.WriteLine("The average value is " + avg);
-                double min = MinValueOfArrayItems(numbers);
-                double max = MaxValueOfArrayItems(numbers);
+                double min = MinValueOfArrayItems(numbers, size);
+                double max = MaxValueOfArrayItems(numbers, size);
                 Console.WriteLine($"min: {min} max: {max}");
                 // Sort array in ascending order.
                 Array.Sort(numbers);
-                DisplayArrayItems(numbers, "Sorted Accending:");
+                DisplayArrayItems(numbers, "Sorted Accending:", size);
                 // reverse array to sort in decending order.
                 Array.Reverse(numbers);
-                DisplayArrayItems(numbers, "Sorted Decending");
+                DisplayArrayItems(numbers, "Sorted Decending", size);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

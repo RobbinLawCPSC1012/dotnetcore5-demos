@@ -11,9 +11,9 @@ namespace Demos
             //program.Decision();
             //program.Loops();
             //program.MethodsExceptions();
-            //program.Arrays();
+            program.Arrays();
             //program.Objects();
-            program.Files();
+            //program.Files();
         }
         public void Sequence()
         {
@@ -126,11 +126,11 @@ namespace Demos
         public void Arrays()
         {
             var app1 = new Arrays.App1();
-            app1.App("1-Arrays-Simple-Stormy");
+            //app1.App("1-Arrays-Simple-Stormy");
             var app2 = new Arrays.App2();
             app2.App("2-Arrays with methods-ave-min-max-sort");
             var app3 = new Arrays.App3();
-            app3.App("3-Arrays vs Lists");
+            //app3.App("3-Arrays vs Lists");
             var app4 = new Arrays.App4();
             //app4.App("4 - ");
             var app5 = new Arrays.App5();
