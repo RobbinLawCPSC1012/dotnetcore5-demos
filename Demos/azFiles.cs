@@ -14,14 +14,14 @@ namespace Files
                 Console.WriteLine($"{demoName} started");
                 const string csvFileName = "Data.dat";
                 string[] csvLines1 = new string[2];
-                csvLines1[0] = "first,line,of,csv";
-                csvLines1[1] = "second,line,of,csv";
+                csvLines1[0] = "first,line,of,array,csv";
+                csvLines1[1] = "second,line,of,array,csv";
                 List<string> csvLines2 = new();
-                csvLines2.Add("first,line,of,csv");
-                csvLines2.Add("second,line,of,csv");
-                csvLines2.Add("third,line,of,csv");
+                csvLines2.Add("first,line,of,list,csv");
+                csvLines2.Add("second,line,of,list,csv");
+                csvLines2.Add("third,line,of,list,csv");
                 //write to a csv file. requires System.IOs    
-                File.WriteAllLines(csvFileName, csvLines1);
+                File.WriteAllLines(csvFileName, csvLines2);
                 Console.WriteLine($"Data successfully written to file at: {Path.GetFullPath(csvFileName)}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
