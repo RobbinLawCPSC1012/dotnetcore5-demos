@@ -66,12 +66,97 @@ namespace Files
     #region
     public class App3
     {
+        private int GetIntBetweenMinMax(String msg, int min, int max)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if (num < min || num > max)
+                        throw new Exception($"Must be between {min} and {max}");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+        private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
+        private string GetString(String msg)
+        {
+            bool inValidInput = true;
+            string str = "";
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    str = Console.ReadLine();
+                    foreach(char character in SPECIALCHARACTERS)
+                    if (str.Contains(character))
+                        throw new FormatException($"String contains an invalid character.");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return str;
+        }
+        const string csvFileName = "Data.dat";
+        private void LoadArraysAndStoreInCSVFile(string[] studentNames, int[] studentGrades, int size)
+        {
+            string[] csvLines1 = new string[size];
+            //Load the arrays with valid values.
+            for (int i = 0; i < size; i++)
+            {
+                studentNames[i] = GetString("Student Name: ");
+                studentGrades[i] = GetIntBetweenMinMax("Student Grade: ", 0, 100);
+            }
+            //Create one array using the csv (comma separated values) 
+            //info from the two parallel arrays.
+            for (int i = 0; i < size; i++)
+            {
+                csvLines1[i] = studentNames[i] + "," + studentGrades[i].ToString();
+            }
+            //Write the one array to a csv file line by line (each line is an element in the array).
+            File.WriteAllLines(csvFileName, csvLines1);
+        }
+        private void ReadInCSVFileAndDisplay(string[] studentNames, int[] studentGrades, int size)
+        {
+            //Read each line of the file into the elements of one array.
+            string[] csvFileInput = File.ReadAllLines(csvFileName);
+            //Tranverse the elements of the array and for each split the string
+            //using the delimiter character as the split point.
+            for(int i = 0; i < csvFileInput.Length; i++)
+            {
+                string[] items = csvFileInput[i].Split(',');
+                studentNames[i] = items[0];
+                studentGrades[i] = int.Parse(items[1]);
+            }
+            //Print the studentName and studentGrades info to the terminal.
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine($"Name: {studentNames[i]}, Grade: {studentGrades[i]}");
+            }
+        }
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100);
+                string[] studentNames = new string[studentCount];
+                int[] studentGrades = new int[studentCount];
+                LoadArraysAndStoreInCSVFile(studentNames, studentGrades, studentCount);
+                ReadInCSVFileAndDisplay(studentNames, studentGrades, studentCount);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

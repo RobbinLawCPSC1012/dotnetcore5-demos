@@ -180,11 +180,11 @@ namespace Demos
         public void Files()
         {
             var app1 = new Files.App1();
-            app1.App("1 - Writing to a file");
+            //app1.App("1 - Writing to a file");
             var app2 = new Files.App2();
-            app2.App("2 - Reading from a file");
+            //app2.App("2 - Reading from a file");
             var app3 = new Files.App3();
-            //app3.App("3 - ");
+            app3.App("3 - ");
             var app4 = new Files.App4();
             //app4.App("4 - ");
         }
