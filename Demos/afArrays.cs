@@ -174,7 +174,7 @@ namespace Arrays
                 //double[] numbers = GetArrayItems();
                 int minSize = 0;
                 int maxSize = 100;
-                int size = GetIntBetweenMinMax($"Enter the number of items as a + int between {minSize} and {maxSize}: ", minSize, maxSize);
+                int size = GetIntBetweenMinMax($"Enter the number of items as an int between {minSize} and {maxSize}: ", minSize, maxSize);
                 double[] numbers = new double[size];
                 GetArrayItems(numbers);
                 DisplayArrayItems(numbers, "Entered Numbers:");

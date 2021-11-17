@@ -128,9 +128,9 @@ namespace Demos
             var app1 = new Arrays.App1();
             //app1.App("1-Arrays-Simple-Stormy");
             var app2 = new Arrays.App2();
-            //app2.App("2-Arrays with methods-ave-min-max-sort");
+            app2.App("2-Arrays with methods-ave-min-max-sort");
             var app3 = new Arrays.App3();
-            app3.App("3-Arrays vs Lists");
+            //app3.App("3-Arrays vs Lists");
             var app4 = new Arrays.App4();
             //app4.App("4 - ");
             var app5 = new Arrays.App5();
@@ -186,7 +186,7 @@ namespace Demos
             var app3 = new Files.App3();
             app3.App("3 - Write and Read csv files with parallel arrays");
             var app4 = new Files.App4();
-            //app4.App("4 - ");
+            //app4.App("4 - File I/O using streams");
         }
     }
 }

@@ -113,7 +113,6 @@ namespace Files
         const string csvFileName = "Data.dat";
         private void LoadArraysAndStoreInCSVFile(string[] studentNames, int[] studentGrades, int size)
         {
-            string[] csvLines1 = new string[size];
             //Load the arrays with valid values.
             for (int i = 0; i < size; i++)
             {
@@ -122,6 +121,7 @@ namespace Files
             }
             //Create one array using the csv (comma separated values) 
             //info from the two parallel arrays.
+            string[] csvLines1 = new string[size];
             for (int i = 0; i < size; i++)
             {
                 csvLines1[i] = studentNames[i] + "," + studentGrades[i].ToString();
@@ -156,6 +156,7 @@ namespace Files
                 string[] studentNames = new string[studentCount];
                 int[] studentGrades = new int[studentCount];
                 LoadArraysAndStoreInCSVFile(studentNames, studentGrades, studentCount);
+                Console.ReadLine();
                 ReadInCSVFileAndDisplay(studentNames, studentGrades, studentCount);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
