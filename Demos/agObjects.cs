@@ -4,9 +4,27 @@ using System.Collections.Generic;
 namespace Objects
 {
     #region
+    public class StudentInfo 
+    {
+        //string field, readonly means it can only be set by the constructor and never again.
+        public readonly string StudentName;
+        //int field
+        public readonly int StudentGrade;
+        //greedy constructor, to make sure fields and properties have meaningful values.
+        public StudentInfo(string studentName, int studentGrade)
+        {
+            //validation in the constructor
+            if(string.IsNullOrEmpty(studentName))
+                throw new ArgumentException("Student Name cannot be empty");
+            if (studentGrade < 0 || studentGrade > 100)
+                throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
+            StudentName = studentName;
+            StudentGrade = studentGrade;
+        }
+    }
     public class App1
     {
-        private int GetIntBetweenMinMax(String msg, int min, int max)
+        private int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
         {
             bool inValidInput = true;
             int num = 0;
@@ -16,8 +34,9 @@ namespace Objects
                 {
                     Console.Write(msg);
                     num = int.Parse(Console.ReadLine());
-                    if (num < min || num > max)
-                        throw new Exception($"Must be between {min} and {max}");
+                    if(PreformValidation == "yes")
+                        if (num < min || num > max)
+                            throw new Exception($"Must be between {min} and {max}");
                     inValidInput = false; 
                 }
                 catch (Exception ex)
@@ -29,7 +48,7 @@ namespace Objects
         }
 
         private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
-        private string GetString(String msg)
+        private string GetString(String msg, String PreformValidation)
         {
             bool inValidInput = true;
             string str = "";
@@ -39,9 +58,14 @@ namespace Objects
                 {
                     Console.Write(msg);
                     str = Console.ReadLine();
-                    foreach(char character in SPECIALCHARACTERS)
-                    if (str.Contains(character))
-                        throw new FormatException($"String contains an invalid character.");
+                    if(PreformValidation == "yes")
+                    {
+                        if(string.IsNullOrEmpty(str))
+                            throw new ArgumentException("The string cannot be empty");
+                        foreach(char character in SPECIALCHARACTERS)
+                            if (str.Contains(character))
+                                throw new FormatException($"The string contains an invalid character.");
+                    }
                     inValidInput = false; 
                 }
                 catch (Exception ex)
@@ -52,38 +76,62 @@ namespace Objects
             return str;
         }
 
-        private void WithArrays()
+        private void WithArrayOfObjects()
         {
-            Console.WriteLine("*** Using traditional arrays where size must be statically set at declaration ***");
-            int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100);
-            string[] studentNames = new string[studentCount];
-            int[] studentGrades = new int[studentCount];
-            for (int i = 0; i < studentCount; i++)
+            String PreformValidation = "yes";
+            int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100, PreformValidation);
+            StudentInfo[] students = new StudentInfo[studentCount];
+            string studentName;
+            int studentGrade;
+            for (int i = 0; i < students.Length; i++)
             {
-                studentNames[i] = GetString("Student Name: ");
-                studentGrades[i] = GetIntBetweenMinMax("Student Grade: ", 0, 100);
+                try
+                {
+                    studentName = GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    //studentName = null;
+                    //studentGrade = -1;
+                    students[i] = new StudentInfo(studentName, studentGrade);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                    i--;
+                }
+                
             }
-            for (int i = 0; i < studentCount; i++)
+            for (int i = 0; i < students.Length; i++)
             {
-                Console.WriteLine($"Name: {studentNames[i]}, Grade: {studentGrades[i]}");
+                Console.WriteLine($"Name {i}: {students[i].StudentName}, Grade: {students[i].StudentGrade}");
             }
         }
-        private void WithLists()
+        private void WithListOfObjects()
         {
-            Console.WriteLine("*** Using dynamic arrays called lists where size is not set at declaration ***");
-            List<string> studentNames = new List<string>();
-            List<int> studentGrades = new List<int>();
-            var adding = true;
+            String PreformValidation = "yes";
+            List<StudentInfo> students = new List<StudentInfo>();
+            string studentName;
+            int studentGrade;
+            bool adding = true;
+            int i = 0;
             while(adding)
             {
-                studentNames.Add(GetString("Student Name: "));
-                studentGrades.Add(GetIntBetweenMinMax("Student Grade: ", 0, 100));
-                if (GetString("Add another? y/n: ") == "n")
-                    adding = false;
+                try
+                {
+                    studentName = GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    students.Add(new StudentInfo(studentName, studentGrade));
+                    i++;
+                    if (GetString("Add another? y/n: ", "yes") == "n")
+                        adding = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                }
             }
-            for (int i = 0; i < studentNames.Count; i++)
+            for (int j = 0; j < students.Count; j++)
             {
-                Console.WriteLine($"Name: {studentNames[i]}, Grade: {studentGrades[i]}");
+                Console.WriteLine($"Name: {students[j].StudentName}, Grade: {students[j].StudentGrade}");
             }
         }
         public void App(string demoName)
@@ -91,8 +139,8 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                WithArrays();
-                WithLists();
+                WithArrayOfObjects();
+                //WithListOfObjects();
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
