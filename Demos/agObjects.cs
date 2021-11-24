@@ -89,8 +89,6 @@ namespace Objects
                 {
                     studentName = GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    //studentName = null;
-                    //studentGrade = -1;
                     students[i] = new StudentInfo(studentName, studentGrade);
                 }
                 catch (Exception e)
