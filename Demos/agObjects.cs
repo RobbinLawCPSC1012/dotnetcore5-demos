@@ -4,14 +4,14 @@ using System.Collections.Generic;
 namespace Objects
 {
     #region
-    public class StudentInfo 
+    public class StudentInfoWithFields 
     {
         //string field, readonly means it can only be set by the constructor and never again.
         public readonly string StudentName;
         //int field
         public readonly int StudentGrade;
         //greedy constructor, to make sure fields and properties have meaningful values.
-        public StudentInfo(string studentName, int studentGrade)
+        public StudentInfoWithFields(string studentName, int studentGrade)
         {
             //validation in the constructor
             if(string.IsNullOrEmpty(studentName))
@@ -80,7 +80,7 @@ namespace Objects
         {
             String PreformValidation = "yes";
             int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100, PreformValidation);
-            StudentInfo[] students = new StudentInfo[studentCount];
+            StudentInfoWithFields[] students = new StudentInfoWithFields[studentCount];
             string studentName;
             int studentGrade;
             for (int i = 0; i < students.Length; i++)
@@ -89,7 +89,7 @@ namespace Objects
                 {
                     studentName = GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    students[i] = new StudentInfo(studentName, studentGrade);
+                    students[i] = new StudentInfoWithFields(studentName, studentGrade);
                 }
                 catch (Exception e)
                 {
@@ -106,7 +106,7 @@ namespace Objects
         private void WithListOfObjects()
         {
             String PreformValidation = "yes";
-            List<StudentInfo> students = new List<StudentInfo>();
+            List<StudentInfoWithFields> students = new List<StudentInfoWithFields>();
             string studentName;
             int studentGrade;
             bool adding = true;
@@ -117,7 +117,7 @@ namespace Objects
                 {
                     studentName = GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    students.Add(new StudentInfo(studentName, studentGrade));
+                    students.Add(new StudentInfoWithFields(studentName, studentGrade));
                     i++;
                     if (GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
@@ -150,14 +150,118 @@ namespace Objects
     }
     #endregion
     #region
+    public class StudentInfoWithProperties 
+    {
+        //string auto-implemented property
+        public string StudentName {get; private set;}
+        //int auto-implemented property
+        public int StudentGrade {get; private set;}
+        //greedy constructor, to make sure fields and properties have meaningful values.
+        public StudentInfoWithProperties(string studentName, int studentGrade)
+        {
+            //validation in the constructor
+            if(string.IsNullOrEmpty(studentName))
+                throw new ArgumentException("Student Name cannot be empty");
+            if (studentGrade < 0 || studentGrade > 100)
+                throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
+            StudentName = studentName;
+            StudentGrade = studentGrade;
+        }
+    }
     public class App2
     {
+        private int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if(PreformValidation == "yes")
+                        if (num < min || num > max)
+                            throw new Exception($"Must be between {min} and {max}");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+        private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
+        private string GetString(String msg, String PreformValidation)
+        {
+            bool inValidInput = true;
+            string str = "";
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    str = Console.ReadLine();
+                    if(PreformValidation == "yes")
+                    {
+                        if(string.IsNullOrEmpty(str))
+                            throw new ArgumentException("The string cannot be empty");
+                        foreach(char character in SPECIALCHARACTERS)
+                            if (str.Contains(character))
+                                throw new FormatException($"The string contains an invalid character.");
+                    }
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return str;
+        }
+
+        public void AddStudents(List<StudentInfoWithProperties> students)
+        {
+            String PreformValidation = "yes";
+            string studentName;
+            int studentGrade;
+            bool adding = true;
+            int i = 0;
+            while(adding)
+            {
+                try
+                {
+                    studentName = GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    students.Add(new StudentInfoWithProperties(studentName, studentGrade));
+                    i++;
+                    if (GetString("Add another? y/n: ", "yes") == "n")
+                        adding = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                }
+            }
+        }
+
+        public void DisplayStudents(List<StudentInfoWithProperties> students)
+        {
+            for (int i = 0; i < students.Count; i++)
+            {
+                Console.WriteLine($"Name: {students[i].StudentName}, Grade: {students[i].StudentGrade}");
+            }
+        }
+
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                List<StudentInfoWithProperties> students = new List<StudentInfoWithProperties>();
+                AddStudents(students);
+                DisplayStudents(students);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
