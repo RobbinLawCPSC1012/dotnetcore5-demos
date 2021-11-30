@@ -117,7 +117,9 @@ namespace Objects
                 {
                     studentName = GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    students.Add(new StudentInfoWithFields(studentName, studentGrade));
+                    StudentInfoWithFields newStudent = new StudentInfoWithFields(studentName, studentGrade);
+                    students.Add(newStudent);
+                    // students.Add(new StudentInfoWithFields(studentName, studentGrade));
                     i++;
                     if (GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
@@ -129,7 +131,7 @@ namespace Objects
             }
             for (int j = 0; j < students.Count; j++)
             {
-                Console.WriteLine($"Name: {students[j].StudentName}, Grade: {students[j].StudentGrade}");
+                Console.WriteLine($"Name {j}: {students[j].StudentName}, Grade {j}: {students[j].StudentGrade}");
             }
         }
         public void App(string demoName)
@@ -137,8 +139,8 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                WithArrayOfObjects();
-                //WithListOfObjects();
+                //WithArrayOfObjects();
+                WithListOfObjects();
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -250,7 +252,7 @@ namespace Objects
         {
             for (int i = 0; i < students.Count; i++)
             {
-                Console.WriteLine($"Name: {students[i].StudentName}, Grade: {students[i].StudentGrade}");
+                Console.WriteLine($"Name {i}: {students[i].StudentName}, Grade {i}: {students[i].StudentGrade}");
             }
         }
 
