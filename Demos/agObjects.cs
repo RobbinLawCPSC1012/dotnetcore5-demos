@@ -154,7 +154,13 @@ namespace Objects
     #region
     public class StudentInfoWithProperties 
     {
-        //string auto-implemented property
+        //String auto-implemented property.
+        //Private set means that only the constructor or member methods can set it
+        //or mutate it so StudentName cannot be on the left side of an = outside of this class.
+        //For example you cannot have myInstanceName.StudentName = "hi";
+        //By default the get is public so StudentName can be on the right side of 
+        //an = outside of this class.
+        //For example you can have string myStudentName = myInstanceName.StudentName;
         public string StudentName {get; private set;}
         //int auto-implemented property
         public int StudentGrade {get; private set;}
@@ -236,7 +242,10 @@ namespace Objects
                 {
                     studentName = GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    students.Add(new StudentInfoWithProperties(studentName, studentGrade));
+                    StudentInfoWithProperties newStudent = new StudentInfoWithProperties(studentName, studentGrade);
+                    students.Add(newStudent);
+                    // newStudent.StudentName = "hi";
+                    string myStudentNameString = newStudent.StudentName;
                     i++;
                     if (GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
