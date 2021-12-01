@@ -119,6 +119,7 @@ namespace Objects
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     StudentInfoWithFields newStudent = new StudentInfoWithFields(studentName, studentGrade);
                     students.Add(newStudent);
+                    // newStudent.StudentName = "jimmy";
                     // students.Add(new StudentInfoWithFields(studentName, studentGrade));
                     i++;
                     if (GetString("Add another? y/n: ", "yes") == "n")
@@ -155,12 +156,12 @@ namespace Objects
     public class StudentInfoWithProperties 
     {
         //String auto-implemented property.
-        //Private set (mutator) means that only the constructor or member methods can set it
-        //or mutate it so StudentName cannot be on the left side of an = outside of this class.
-        //For example you cannot have myInstanceName.StudentName = "hi";
         //By default the get (accessor) is public so StudentName can be on the right side of 
         //an = outside of this class.
         //For example you can have string myStudentName = myInstanceName.StudentName;
+        //Private set (mutator) means that only the constructor or member methods can set it
+        //or mutate it so StudentName cannot be on the left side of an = outside of this class.
+        //For example you cannot have myInstanceName.StudentName = "hi";
         public string StudentName {get; private set;}
         //int auto-implemented property
         public int StudentGrade {get; private set;}
@@ -174,6 +175,10 @@ namespace Objects
                 throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
             StudentName = studentName;
             StudentGrade = studentGrade;
+        }
+        public void AnotherInstanceMethod()
+        {
+            StudentName = "jimmy";
         }
     }
     public class App2
@@ -244,8 +249,8 @@ namespace Objects
                     studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     StudentInfoWithProperties newStudent = new StudentInfoWithProperties(studentName, studentGrade);
                     students.Add(newStudent);
-                    // newStudent.StudentName = "hi";
                     string myStudentNameString = newStudent.StudentName;
+                    // newStudent.StudentName = "hi";
                     i++;
                     if (GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
