@@ -4,51 +4,10 @@ using System.Collections.Generic;
 namespace Objects
 {
     #region
-    public class StudentInfoWithFields 
+    public class CommonMethods
     {
-        //string field, readonly means it can only be set by the constructor and never again.
-        public readonly string StudentName;
-        //int field
-        public readonly int StudentGrade;
-        //greedy constructor, to make sure fields and properties have meaningful values.
-        public StudentInfoWithFields(string studentName, int studentGrade)
-        {
-            //validation in the constructor
-            if(string.IsNullOrEmpty(studentName))
-                throw new ArgumentException("Student Name cannot be empty");
-            if (studentGrade < 0 || studentGrade > 100)
-                throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
-            StudentName = studentName;
-            StudentGrade = studentGrade;
-        }
-    }
-    public class App1
-    {
-        private int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
-        {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
-            {
-                try
-                {
-                    Console.Write(msg);
-                    num = int.Parse(Console.ReadLine());
-                    if(PreformValidation == "yes")
-                        if (num < min || num > max)
-                            throw new Exception($"Must be between {min} and {max}");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
-            }
-            return num;
-        }
-
         private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
-        private string GetString(String msg, String PreformValidation)
+        public static string GetString(String msg, String PreformValidation)
         {
             bool inValidInput = true;
             string str = "";
@@ -75,11 +34,55 @@ namespace Objects
             }
             return str;
         }
-
+        public static int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
+        {
+            bool inValidInput = true;
+            int num = 0;
+            while (inValidInput)
+            {
+                try
+                {
+                    Console.Write(msg);
+                    num = int.Parse(Console.ReadLine());
+                    if(PreformValidation == "yes")
+                        if (num < min || num > max)
+                            throw new Exception($"Must be between {min} and {max}");
+                    inValidInput = false; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Invalid: {ex.Message}");
+                }
+            }
+            return num;
+        }
+    }
+    #endregion
+    #region
+    public class StudentInfoWithFields 
+    {
+        //string field, readonly means it can only be set by the constructor and never again.
+        public readonly string StudentName;
+        //int field
+        public readonly int StudentGrade;
+        //greedy constructor, to make sure fields and properties have meaningful values.
+        public StudentInfoWithFields(string studentName, int studentGrade)
+        {
+            //validation in the constructor
+            if(string.IsNullOrEmpty(studentName))
+                throw new ArgumentException("Student Name cannot be empty");
+            if (studentGrade < 0 || studentGrade > 100)
+                throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
+            StudentName = studentName;
+            StudentGrade = studentGrade;
+        }
+    }
+    public class App1
+    {
         private void WithArrayOfObjects()
         {
             String PreformValidation = "yes";
-            int studentCount = GetIntBetweenMinMax("How many students in your class? ", 0, 100, PreformValidation);
+            int studentCount = CommonMethods.GetIntBetweenMinMax("How many students in your class? ", 0, 100, PreformValidation);
             StudentInfoWithFields[] students = new StudentInfoWithFields[studentCount];
             string studentName;
             int studentGrade;
@@ -87,8 +90,8 @@ namespace Objects
             {
                 try
                 {
-                    studentName = GetString($"Student Name {i}: ", PreformValidation);
-                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    studentName = CommonMethods.GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     students[i] = new StudentInfoWithFields(studentName, studentGrade);
                 }
                 catch (Exception e)
@@ -115,14 +118,14 @@ namespace Objects
             {
                 try
                 {
-                    studentName = GetString($"Student Name {i}: ", PreformValidation);
-                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    studentName = CommonMethods.GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     StudentInfoWithFields newStudent = new StudentInfoWithFields(studentName, studentGrade);
                     students.Add(newStudent);
                     // newStudent.StudentName = "jimmy";
                     // students.Add(new StudentInfoWithFields(studentName, studentGrade));
                     i++;
-                    if (GetString("Add another? y/n: ", "yes") == "n")
+                    if (CommonMethods.GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
                 }
                 catch (Exception e)
@@ -176,13 +179,10 @@ namespace Objects
             StudentName = studentName;
             StudentGrade = studentGrade;
         }
-
-        //non greedy constructor, to make sure fields and properties have some default values.
+        //Non greedy constructor, to make sure fields and properties have some default values.
         //Constructor chaining.
-        public StudentInfoWithProperties() : this("James", 50)
-        {
-        }
-
+        public StudentInfoWithProperties() : this("James", 50) {}
+        //Instance method that has set access to StudentName.
         public void AnotherInstanceMethod()
         {
             StudentName = "jimmy";
@@ -190,57 +190,6 @@ namespace Objects
     }
     public class App2
     {
-        private int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
-        {
-            bool inValidInput = true;
-            int num = 0;
-            while (inValidInput)
-            {
-                try
-                {
-                    Console.Write(msg);
-                    num = int.Parse(Console.ReadLine());
-                    if(PreformValidation == "yes")
-                        if (num < min || num > max)
-                            throw new Exception($"Must be between {min} and {max}");
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
-            }
-            return num;
-        }
-        private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
-        private string GetString(String msg, String PreformValidation)
-        {
-            bool inValidInput = true;
-            string str = "";
-            while (inValidInput)
-            {
-                try
-                {
-                    Console.Write(msg);
-                    str = Console.ReadLine();
-                    if(PreformValidation == "yes")
-                    {
-                        if(string.IsNullOrEmpty(str))
-                            throw new ArgumentException("The string cannot be empty");
-                        foreach(char character in SPECIALCHARACTERS)
-                            if (str.Contains(character))
-                                throw new FormatException($"The string contains an invalid character.");
-                    }
-                    inValidInput = false; 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Invalid: {ex.Message}");
-                }
-            }
-            return str;
-        }
-
         public void AddStudents(List<StudentInfoWithProperties> students)
         {
             String PreformValidation = "yes";
@@ -254,14 +203,14 @@ namespace Objects
             {
                 try
                 {
-                    studentName = GetString($"Student Name {i}: ", PreformValidation);
-                    studentGrade = GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    studentName = CommonMethods.GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     StudentInfoWithProperties newStudent = new StudentInfoWithProperties(studentName, studentGrade);
                     students.Add(newStudent);
                     string myStudentNameString = newStudent.StudentName;
                     // newStudent.StudentName = "hi";
                     i++;
-                    if (GetString("Add another? y/n: ", "yes") == "n")
+                    if (CommonMethods.GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
                 }
                 catch (Exception e)
@@ -270,7 +219,6 @@ namespace Objects
                 }
             }
         }
-
         public void DisplayStudents(List<StudentInfoWithProperties> students)
         {
             for (int i = 0; i < students.Count; i++)
