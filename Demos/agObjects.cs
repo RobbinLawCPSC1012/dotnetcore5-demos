@@ -176,6 +176,13 @@ namespace Objects
             StudentName = studentName;
             StudentGrade = studentGrade;
         }
+
+        //non greedy constructor, to make sure fields and properties have some default values.
+        //Constructor chaining.
+        public StudentInfoWithProperties() : this("James", 50)
+        {
+        }
+
         public void AnotherInstanceMethod()
         {
             StudentName = "jimmy";
@@ -241,6 +248,8 @@ namespace Objects
             int studentGrade;
             bool adding = true;
             int i = 0;
+            StudentInfoWithProperties newStudent1 = new StudentInfoWithProperties();
+            students.Add(newStudent1);
             while(adding)
             {
                 try
