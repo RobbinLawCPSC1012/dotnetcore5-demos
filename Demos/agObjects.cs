@@ -155,10 +155,10 @@ namespace Objects
     public class StudentInfoWithProperties 
     {
         //String auto-implemented property.
-        //Private set means that only the constructor or member methods can set it
+        //Private set (mutator) means that only the constructor or member methods can set it
         //or mutate it so StudentName cannot be on the left side of an = outside of this class.
         //For example you cannot have myInstanceName.StudentName = "hi";
-        //By default the get is public so StudentName can be on the right side of 
+        //By default the get (accessor) is public so StudentName can be on the right side of 
         //an = outside of this class.
         //For example you can have string myStudentName = myInstanceName.StudentName;
         public string StudentName {get; private set;}
@@ -262,6 +262,10 @@ namespace Objects
             for (int i = 0; i < students.Count; i++)
             {
                 Console.WriteLine($"Name {i}: {students[i].StudentName}, Grade {i}: {students[i].StudentGrade}");
+            }
+            foreach (StudentInfoWithProperties student in students)
+            {
+                Console.WriteLine($"Name : {student.StudentName}, Grade : {student.StudentGrade}");
             }
         }
 
