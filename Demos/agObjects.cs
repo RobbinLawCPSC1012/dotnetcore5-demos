@@ -126,8 +126,8 @@ namespace Objects
                     studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
                     StudentInfoWithFields newStudent = new StudentInfoWithFields(studentName, studentGrade);
                     students.Add(newStudent);
+                    //We do not have set (mutator) access to the readonly field after instanciation.
                     // newStudent.StudentName = "jimmy";
-                    // students.Add(new StudentInfoWithFields(studentName, studentGrade));
                     i++;
                     if (CommonMethods.GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
@@ -147,8 +147,8 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                //WithArrayOfObjects();
-                WithListOfObjects();
+                WithArrayOfObjects();
+                //WithListOfObjects();
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -208,7 +208,7 @@ namespace Objects
             //it separately outside of the constructor after the object 
             //has been created (instanciated).
             // newStudent0.StudentName = "hi";
-            //We can access the private set this way.
+            //We can access the private set this way though.
             // newStudent0.AnotherInstanceMethod("hello");
             int i = 1;
             while(adding)
