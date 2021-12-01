@@ -155,9 +155,9 @@ namespace Demos
             var app1 = new Objects.App1();
             //app1.App("1 - array of objects vs list of objects both using only fields");
             var app2 = new Objects.App2();
-            app2.App("2 - objects using methods, lists, and auto implemented properties");
+            //app2.App("2 - objects using methods, lists, and auto-implemented properties");
             var app3 = new Objects.App3();
-            //app3.App("3 - ");
+            app3.App("3 - objects using methods, lists, and fully-implemented properties");
             var app4 = new Objects.App4();
             //app4.App("4 - ");
             var app5 = new Objects.App5();

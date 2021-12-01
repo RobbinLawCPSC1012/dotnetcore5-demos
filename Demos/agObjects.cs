@@ -7,6 +7,9 @@ namespace Objects
     public class CommonMethods
     {
         private const string SPECIALCHARACTERS = @",:;\/!?@#$%^&*~`0123456789";
+        //This is a class method that can be called without instantiating an object
+        //of this class. The key word static makes it a class method.
+        //Just call that class name and method, CommonMethods.GetString("hi","yes");
         public static string GetString(String msg, String PreformValidation)
         {
             bool inValidInput = true;
@@ -34,6 +37,7 @@ namespace Objects
             }
             return str;
         }
+        //This is another class method.
         public static int GetIntBetweenMinMax(String msg, int min, int max, String PreformValidation)
         {
             bool inValidInput = true;
@@ -156,7 +160,7 @@ namespace Objects
     }
     #endregion
     #region
-    public class StudentInfoWithProperties 
+    public class StudentInfoWithAutoProperties 
     {
         //String auto-implemented property.
         //By default the get (accessor) is public so StudentName can be on the right side of 
@@ -165,11 +169,12 @@ namespace Objects
         //Private set (mutator) means that only the constructor or member methods can set it
         //or mutate it so StudentName cannot be on the left side of an = outside of this class.
         //For example you cannot have myInstanceName.StudentName = "hi";
+        //NEVER make an auto-implemented properties set (mutator) public as there is no validation.
         public string StudentName {get; private set;}
         //int auto-implemented property
         public int StudentGrade {get; private set;}
         //greedy constructor, to make sure fields and properties have meaningful values.
-        public StudentInfoWithProperties(string studentName, int studentGrade)
+        public StudentInfoWithAutoProperties(string studentName, int studentGrade)
         {
             //validation in the constructor
             if(string.IsNullOrEmpty(studentName))
@@ -181,34 +186,40 @@ namespace Objects
         }
         //Non greedy constructor, to make sure fields and properties have some default values.
         //Constructor chaining.
-        public StudentInfoWithProperties() : this("James", 50) {}
+        public StudentInfoWithAutoProperties() : this("James", 50) {}
         //Instance method that has set access to StudentName.
-        public void AnotherInstanceMethod()
+        public void AnotherInstanceMethod(String newName)
         {
-            StudentName = "jimmy";
+            StudentName = newName;
         }
     }
     public class App2
     {
-        public void AddStudents(List<StudentInfoWithProperties> students)
+        public void AddStudents(List<StudentInfoWithAutoProperties> students)
         {
             String PreformValidation = "yes";
             string studentName;
             int studentGrade;
             bool adding = true;
-            int i = 0;
-            StudentInfoWithProperties newStudent1 = new StudentInfoWithProperties();
-            students.Add(newStudent1);
+            //Adding a student with default values "James, 50".
+            StudentInfoWithAutoProperties newStudent0 = new StudentInfoWithAutoProperties();
+            students.Add(newStudent0);
+            //Because the properties set is private we cannot set (mutate) 
+            //it separately outside of the constructor after the object 
+            //has been created (instanciated).
+            // newStudent0.StudentName = "hi";
+            //We can access the private set this way.
+            // newStudent0.AnotherInstanceMethod("hello");
+            int i = 1;
             while(adding)
             {
                 try
                 {
                     studentName = CommonMethods.GetString($"Student Name {i}: ", PreformValidation);
                     studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
-                    StudentInfoWithProperties newStudent = new StudentInfoWithProperties(studentName, studentGrade);
+                    StudentInfoWithAutoProperties newStudent = new StudentInfoWithAutoProperties(studentName, studentGrade);
                     students.Add(newStudent);
                     string myStudentNameString = newStudent.StudentName;
-                    // newStudent.StudentName = "hi";
                     i++;
                     if (CommonMethods.GetString("Add another? y/n: ", "yes") == "n")
                         adding = false;
@@ -219,13 +230,13 @@ namespace Objects
                 }
             }
         }
-        public void DisplayStudents(List<StudentInfoWithProperties> students)
+        public void DisplayStudents(List<StudentInfoWithAutoProperties> students)
         {
             for (int i = 0; i < students.Count; i++)
             {
                 Console.WriteLine($"Name {i}: {students[i].StudentName}, Grade {i}: {students[i].StudentGrade}");
             }
-            foreach (StudentInfoWithProperties student in students)
+            foreach (StudentInfoWithAutoProperties student in students)
             {
                 Console.WriteLine($"Name : {student.StudentName}, Grade : {student.StudentGrade}");
             }
@@ -236,7 +247,7 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                List<StudentInfoWithProperties> students = new List<StudentInfoWithProperties>();
+                List<StudentInfoWithAutoProperties> students = new List<StudentInfoWithAutoProperties>();
                 AddStudents(students);
                 DisplayStudents(students);
                 Console.WriteLine($"{demoName} ended");
@@ -250,14 +261,115 @@ namespace Objects
     }
     #endregion
     #region
+    public class StudentInfoWithFullProperties 
+    {
+        //String fully-implemented property with a backing field.
+        //By default the get (accessor) is public so StudentName can be on the right side of 
+        //an = outside of this class.
+        //For example you can have string myStudentName = myInstanceName.StudentName;
+        //Public set (mutator) now means that any code outside of this class can set it
+        //or mutate it so StudentName can now be on the left side of an = outside of this class.
+        //For example you can now have myInstanceName.StudentName = "hi";
+        //Because of this we now need validation inside the setter (mutator).
+        private string _StudentName;
+        public string StudentName 
+        {
+            get {return _StudentName;} 
+            set
+            {
+                //validation in the setter (mutator)
+                if(string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Student Name cannot be empty");
+                _StudentName = value;
+            }
+        }
+        //int fully-implemented property with backing field.
+        //This structure is performing ENCAPSULATION, nothing outside this
+        //class can see the field directly, only the property.
+        private int _StudentGrade;
+        public int StudentGrade
+        {
+            get {return _StudentGrade;} 
+            set
+            {
+                //validation in the setter (mutator)
+                if (value < 0 || value > 100)
+                    throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
+                _StudentGrade = value;
+            }
+        }
+        //greedy constructor, to make sure fields and properties have meaningful values.
+        public StudentInfoWithFullProperties(string studentName, int studentGrade)
+        {
+            //validation in the constructor
+            if(string.IsNullOrEmpty(studentName))
+                throw new ArgumentException("Student Name cannot be empty");
+            if (studentGrade < 0 || studentGrade > 100)
+                throw new FormatException($"Student Grade must be between 0 and 100 inclusive");
+            StudentName = studentName;
+            StudentGrade = studentGrade;
+        }
+        //Non greedy constructor, to make sure fields and properties have some default values.
+        //Constructor chaining.
+        public StudentInfoWithFullProperties() : this("James", 50) {}
+    }
     public class App3
     {
+        public void AddStudents(List<StudentInfoWithFullProperties> students)
+        {
+            String PreformValidation = "yes";
+            string studentName;
+            int studentGrade;
+            bool adding = true;
+            //Adding a student with default values "James, 50".
+            StudentInfoWithFullProperties newStudent0 = new StudentInfoWithFullProperties();
+            students.Add(newStudent0);
+            //Because the properties set is public we can set (mutate) 
+            //it separately outside of the constructor after the object 
+            //has been created (instanciated).
+            //newStudent0.StudentName = "hi";
+            //Because we now have validation in the setter we will NOT
+            //allow bad data to creep in.
+            //newStudent0.StudentName = "hi/";
+            int i = 1;
+            while(adding)
+            {
+                try
+                {
+                    studentName = CommonMethods.GetString($"Student Name {i}: ", PreformValidation);
+                    studentGrade = CommonMethods.GetIntBetweenMinMax($"Student Grade {i}: ", 0, 100, PreformValidation);
+                    StudentInfoWithFullProperties newStudent = new StudentInfoWithFullProperties(studentName, studentGrade);
+                    students.Add(newStudent);
+                    string myStudentNameString = newStudent.StudentName;
+                    i++;
+                    if (CommonMethods.GetString("Add another? y/n: ", "yes") == "n")
+                        adding = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                }
+            }
+        }
+        public void DisplayStudents(List<StudentInfoWithFullProperties> students)
+        {
+            for (int i = 0; i < students.Count; i++)
+            {
+                Console.WriteLine($"Name {i}: {students[i].StudentName}, Grade {i}: {students[i].StudentGrade}");
+            }
+            foreach (StudentInfoWithFullProperties student in students)
+            {
+                Console.WriteLine($"Name : {student.StudentName}, Grade : {student.StudentGrade}");
+            }
+        }
         public void App(string demoName)
         {
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                List<StudentInfoWithFullProperties> students = new List<StudentInfoWithFullProperties>();
+                AddStudents(students);
+                DisplayStudents(students);
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
