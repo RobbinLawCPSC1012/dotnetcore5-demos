@@ -207,9 +207,9 @@ namespace Objects
             //Because the properties set is private we cannot set (mutate) 
             //it separately outside of the constructor after the object 
             //has been created (instanciated).
-            // newStudent0.StudentName = "hi";
+            //newStudent0.StudentName = "hi";
             //We can access the private set this way though.
-            // newStudent0.AnotherInstanceMethod("hello");
+            newStudent0.AnotherInstanceMethod("hello");
             int i = 1;
             while(adding)
             {
@@ -330,7 +330,7 @@ namespace Objects
             //newStudent0.StudentName = "hi";
             //Because we now have validation in the setter we will NOT
             //allow bad data to creep in.
-            //newStudent0.StudentName = "hi/";
+            //newStudent0.StudentName = "";
             int i = 1;
             while(adding)
             {
