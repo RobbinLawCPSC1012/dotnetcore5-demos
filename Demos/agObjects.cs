@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Objects
 {
@@ -312,6 +313,42 @@ namespace Objects
         //Non greedy constructor, to make sure fields and properties have some default values.
         //Constructor chaining.
         public StudentInfoWithFullProperties() : this("James", 50) {}
+
+        #region code added for App4
+        public override string ToString()
+        {
+            return $"{StudentName},{StudentGrade}";
+        }
+        #endregion
+        #region code added for App5
+        public static StudentInfoWithFullProperties OurParse(string text)
+        {
+            string [] items = text.Split(',');
+            if (items.Length != 2) 
+                throw new FormatException("Input string is not the correct CSV format" );
+            return new StudentInfoWithFullProperties(
+                items[0],
+                int.Parse(items[1])
+            );
+        }
+        public static bool TryParse(string text, out StudentInfoWithFullProperties result)
+        {
+            bool valid = false;
+            try
+            {
+                result = OurParse(text);
+                valid = true;
+            }
+            catch (Exception ex)
+            { 
+                Console.WriteLine($"catch StudentInfoWithFullProperties.TryParse: {ex.Message}");  
+                result = null;
+            }
+            //This code runs if the try is successful and does not have a return
+            //and if the catch does not have a return as in this case.
+            return valid;
+        }
+        #endregion
     }
     public class App3
     {
@@ -321,7 +358,6 @@ namespace Objects
             string studentName;
             int studentGrade;
             bool adding = true;
-            //TODO 2 have more fun
             //Adding a student with default values "James, 50".
             StudentInfoWithFullProperties newStudent0 = new StudentInfoWithFullProperties();
             students.Add(newStudent0);
@@ -332,7 +368,6 @@ namespace Objects
             //Because we now have validation in the setter we will NOT
             //allow bad data to creep in.
             //newStudent0.StudentName = "";
-            // TODO 1 have fun
             int i = 1;
             while(adding)
             {
@@ -369,7 +404,7 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                List<StudentInfoWithFullProperties> students = new List<StudentInfoWithFullProperties>();
+                List<StudentInfoWithFullProperties> students = new();
                 AddStudents(students);
                 DisplayStudents(students);
                 Console.WriteLine($"{demoName} ended");
@@ -390,7 +425,20 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                const string csvFileName = "StudentData.dat";
+                List<StudentInfoWithFullProperties> students = new();
+                students.Add(new StudentInfoWithFullProperties("Charles", 55));
+                students.Add(new StudentInfoWithFullProperties("Jimmy", 45));
+                students.Add(new StudentInfoWithFullProperties("Jill", 99));
+                students.Add(new StudentInfoWithFullProperties("John", 88));
+                students.Add(new StudentInfoWithFullProperties("James", 77));
+                students.Add(new StudentInfoWithFullProperties("Robbin", 22));
+                List<string> csvLines = new();
+                foreach (var item in students)
+                    csvLines.Add(item.ToString());
+                //write to a csv file. requires using System.IO    
+                File.WriteAllLines(csvFileName, csvLines);
+                Console.WriteLine($"Data successfully written to file at: {Path.GetFullPath(csvFileName)}");
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }
@@ -409,7 +457,29 @@ namespace Objects
             try
             {
                 Console.WriteLine($"{demoName} started");
-                
+                const string csvFileName = "StudentData.dat";
+                List<StudentInfoWithFullProperties> students = new();
+                //read the csv file and each line becomes a new product added to the productlist.
+                string[] csvFileInput = File.ReadAllLines(csvFileName);
+                StudentInfoWithFullProperties student = null;
+                //each line read from the file is a string that now has to be parsed into different types.
+                foreach(string line in csvFileInput)
+                {
+                    try
+                    {
+                    bool returnedBool = StudentInfoWithFullProperties.TryParse(line, out student);
+                    //This line of code is here only to show that the bool is always returned.
+                    Console.WriteLine($"returnedBool is: {returnedBool} for: {line}");
+                    if(returnedBool != false)
+                        students.Add(student);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Exception (App foreach catch): {ex.Message}");
+                    }    
+                }
+                foreach (var item in students)
+                    Console.WriteLine(item.ToString());
                 Console.WriteLine($"{demoName} ended");
                 Console.WriteLine("");
             }

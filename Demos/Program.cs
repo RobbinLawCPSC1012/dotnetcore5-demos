@@ -155,13 +155,13 @@ namespace Demos
             var app1 = new Objects.App1();
             //app1.App("1 - array of objects vs list of objects both using only fields");
             var app2 = new Objects.App2();
-            app2.App("2 - list of objects using methods, and auto-implemented properties");
+            //app2.App("2 - list of objects using methods, and auto-implemented properties");
             var app3 = new Objects.App3();
             //app3.App("3 - list of objects using methods, and fully-implemented properties");
             var app4 = new Objects.App4();
-            //app4.App("4 - ");
+            app4.App("4 - writing to a csv file with list of objects, tostring, and fully-implemented properties");
             var app5 = new Objects.App5();
-            //app5.App("5 - ");
+            app5.App("5 - reading from a csv file with list of objects, tryparse, parse, and fully-implemented properties");
             var app6 = new Objects.App6();
             //app6.App("6 - ");
             var app7 = new Objects.App7();
