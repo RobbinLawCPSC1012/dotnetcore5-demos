@@ -321,6 +321,7 @@ namespace Objects
             string studentName;
             int studentGrade;
             bool adding = true;
+            //TODO 2 have more fun
             //Adding a student with default values "James, 50".
             StudentInfoWithFullProperties newStudent0 = new StudentInfoWithFullProperties();
             students.Add(newStudent0);
@@ -331,6 +332,7 @@ namespace Objects
             //Because we now have validation in the setter we will NOT
             //allow bad data to creep in.
             //newStudent0.StudentName = "";
+            // TODO 1 have fun
             int i = 1;
             while(adding)
             {
