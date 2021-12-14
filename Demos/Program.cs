@@ -159,7 +159,7 @@ namespace Demos
             var app3 = new Objects.App3();
             //app3.App("3 - list of objects using methods, and fully-implemented properties");
             var app4 = new Objects.App4();
-            app4.App("4 - writing to a csv file with list of objects, tostring, and fully-implemented properties");
+            //app4.App("4 - writing to a csv file with list of objects, tostring, and fully-implemented properties");
             var app5 = new Objects.App5();
             app5.App("5 - reading from a csv file with list of objects, tryparse, parse, and fully-implemented properties");
             var app6 = new Objects.App6();
